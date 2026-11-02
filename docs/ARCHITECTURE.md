@@ -6,10 +6,10 @@ Demonstrate a personal, production-style Google ADK agent with observable RAG ex
 ## Request path
 
 ```text
-User / curl / Swagger
+User / browser
         |
         v
-FastAPI /ask on Cloud Run
+Streamlit application
         |
         v
 Google ADK Runner + Gemini
@@ -40,20 +40,19 @@ Dynatrace SaaS
 ```
 
 ## Important interview statement
-Cloud Run does **not** calculate hallucination or groundedness. The application evaluation layer calculates those values from the question, retrieved evidence, and generated answer. OpenTelemetry transports the resulting telemetry to Dynatrace.
+Streamlit and Dynatrace do **not** calculate hallucination or groundedness. The application evaluation layer calculates those values from the question, retrieved evidence, and generated answer. OpenTelemetry transports the resulting telemetry to Dynatrace.
 
 ## Trace hierarchy
 The project intentionally creates these spans:
 
-- `http POST /ask`
-  - `agent.request`
-    - `agent.execute`
-      - `rag.retrieve` (tool span)
-    - `evaluation.rag_quality`
+- `streamlit.agent.request`
+  - `agent.execute`
+    - `rag.retrieve` (tool span)
+  - `evaluation.rag_quality`
 
 Google ADK may also emit framework-level telemetry depending on ADK/runtime configuration. The custom spans above are the stable demo surface.
 
-## Cloud Run vs GKE
-Cloud Run is fully managed; this project uses application-level OpenTelemetry and sends OTLP/HTTP directly to Dynatrace.
+## Streamlit deployment
+Streamlit Community Cloud hosts the UI. The project uses application-level OpenTelemetry and sends OTLP/HTTP directly to Dynatrace when the optional Dynatrace settings are configured.
 
 For GKE, keep the same application OpenTelemetry instrumentation. Additionally, a customer can use Dynatrace Operator / Kubernetes application injection for richer cluster, pod, namespace, and workload observability.

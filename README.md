@@ -3,9 +3,9 @@
 A GitHub-ready personal project for demonstrating:
 
 - Google Agent Development Kit (ADK)
-- Gemini on Vertex AI
+- Gemini through Vertex AI or a Gemini API key
 - Tool-based RAG over SRE runbooks
-- Google Cloud Run deployment
+- Streamlit deployment
 - OpenTelemetry distributed tracing and custom metrics
 - Dynatrace OTLP/HTTP ingestion
 - Groundedness, relevance, hallucination-risk, and retrieval-quality evaluation
@@ -19,7 +19,7 @@ A GitHub-ready personal project for demonstrating:
 User
   |
   v
-FastAPI /ask
+Streamlit UI
   |
   v
 Google ADK Agent + Gemini
@@ -74,118 +74,63 @@ See `docs/ARCHITECTURE.md` for details.
 │   ├── DEMO_SCRIPT.md
 │   └── INTERVIEW_QA.md
 ├── tests/test_rag.py
+├── streamlit_app.py
 ├── main.py
 ├── Dockerfile
 ├── requirements.txt
 └── .env.example
 ```
 
-# Run from Google Cloud Shell
+## Run locally
 
-## 1. Clone your GitHub repo
-
-```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
-```
-
-## 2. Set your project
+Create a virtual environment and install the application:
 
 ```bash
-export PROJECT_ID="your-gcp-project-id"
-export REGION="us-central1"
-gcloud config set project "$PROJECT_ID"
-```
-
-Confirm billing is enabled for the project.
-
-## 3. Enable APIs and create the service account
-
-```bash
-./scripts/setup_gcp.sh
-```
-
-This enables Cloud Run, Cloud Build, Artifact Registry, Vertex AI, and Secret Manager and creates `adk-observability-sa`.
-
-## 4. Create a Dynatrace token
-
-Create a Dynatrace Classic token with:
-
-- `openTelemetryTrace.ingest`
-- `metrics.ingest`
-
-Then store it without exposing it in GitHub:
-
-```bash
-./scripts/create_dynatrace_secret.sh
-```
-
-## 5. Set the Dynatrace OTLP endpoint
-
-```bash
-export DT_OTLP_ENDPOINT="https://YOUR_ENVIRONMENT_ID.live.dynatrace.com/api/v2/otlp"
-```
-
-## 6. Deploy to Cloud Run
-
-```bash
-./scripts/deploy_cloud_run.sh
-```
-
-The script prints the Cloud Run URL and a ready-to-run curl command.
-
-## 7. Test the agent
-
-```bash
-export SERVICE_URL="YOUR_CLOUD_RUN_URL"
-
-curl -s -X POST "$SERVICE_URL/ask" \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "question":"Our Cloud Run service started returning 5xx immediately after deployment. What should I check?"
-  }' | python -m json.tool
-```
-
-Example response shape:
-
-```json
-{
-  "answer": "...",
-  "session_id": "session-...",
-  "trace_id": "...",
-  "retrieved_documents": [
-    {"id": "cloud-run-5xx", "title": "Cloud Run 5xx After Deployment", "score": 1.0}
-  ],
-  "evaluation": {
-    "groundedness": 0.94,
-    "answer_relevance": 0.96,
-    "hallucination_risk": 0.06,
-    "evaluator": "gemini-judge"
-  },
-  "telemetry_exporter": "dynatrace-otlp-http",
-  "duration_seconds": 2.431
-}
-```
-
-Use `trace_id` to find/correlate the exact request in Dynatrace.
-
-# Run locally in Cloud Shell first
-
-If you want to validate before deployment:
-
-```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 cp .env.example .env
-sed -i "s/your-gcp-project-id/$PROJECT_ID/" .env
-./scripts/run_local.sh
 ```
 
-In another Cloud Shell tab:
+On Windows PowerShell, activate the environment with:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+For the simplest local and Streamlit Community Cloud setup, create a Gemini API key in Google AI Studio and set these values in `.env`:
+
+```text
+GOOGLE_GENAI_USE_VERTEXAI=FALSE
+GOOGLE_API_KEY=your-gemini-api-key
+```
+
+Vertex AI remains supported. Set `GOOGLE_GENAI_USE_VERTEXAI=TRUE`, provide `GOOGLE_CLOUD_PROJECT`, and authenticate with Application Default Credentials if you prefer it.
+
+Start the UI:
 
 ```bash
-./scripts/smoke_test.sh
+streamlit run streamlit_app.py
 ```
 
-Without Dynatrace configuration, traces and metrics use console exporters.
+Open the URL printed by Streamlit, ask an SRE question, and inspect the answer, retrieved runbooks, evaluation scores, and trace ID. Without Dynatrace configuration, traces and metrics use console exporters.
+
+## Deploy to Streamlit Community Cloud
+
+1. Push this repository to GitHub.
+2. In Streamlit Community Cloud, create an app from that repository and select `streamlit_app.py` as the main file.
+3. In **Advanced settings → Secrets**, add the following. These values are exposed to the app as environment variables; do not commit them.
+
+```toml
+GOOGLE_GENAI_USE_VERTEXAI = "FALSE"
+GOOGLE_API_KEY = "your-gemini-api-key"
+
+# Optional Dynatrace OTLP export
+# DYNATRACE_OTLP_ENDPOINT = "https://YOUR_ENVIRONMENT_ID.live.dynatrace.com/api/v2/otlp"
+# DYNATRACE_API_TOKEN = "your-dynatrace-token"
+```
+
+The Streamlit deployment route does not require `gcloud` or Cloud Run. The previous FastAPI and Cloud Run files remain available only for an API/container deployment option.
 
 # What to show in Dynatrace
 
@@ -206,16 +151,15 @@ agent.hallucination.risk
 For traces, explain the hierarchy:
 
 ```text
-http POST /ask
-└── agent.request
-    ├── agent.execute
-    │   └── rag.retrieve
-    └── evaluation.rag_quality
+streamlit.agent.request
+├── agent.execute
+│   └── rag.retrieve
+└── evaluation.rag_quality
 ```
 
 # Critical interview statement
 
-**Cloud Run does not automatically calculate hallucination or groundedness.** The application evaluator calculates the quality scores from the question, retrieved context, and final answer; OpenTelemetry exports the resulting metrics and trace attributes to Dynatrace.
+**Streamlit and Dynatrace do not automatically calculate hallucination or groundedness.** The application evaluator calculates the quality scores from the question, retrieved context, and final answer; OpenTelemetry exports the resulting metrics and trace attributes to Dynatrace.
 
 # GKE
 
@@ -225,7 +169,7 @@ The `k8s/` folder shows how the same container can run as a Kubernetes Deploymen
 
 - Never commit `.env`.
 - Never commit the Dynatrace token.
-- Store the token in Secret Manager for Cloud Run.
+- Store deployment secrets in Streamlit Community Cloud Secrets.
 - Do not attach raw sensitive prompts or retrieved customer content as telemetry attributes.
 - This sample only records safe IDs, timing, scores, and low-cardinality metadata.
 

@@ -5,7 +5,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     google_cloud_project: str = ""
     google_cloud_location: str = "us-central1"
-    google_genai_use_vertexai: str = "TRUE"
+    google_genai_use_vertexai: bool = True
+    google_api_key: str = ""
     model_name: str = "gemini-2.5-flash"
     evaluator_model: str = "gemini-2.5-flash"
 
