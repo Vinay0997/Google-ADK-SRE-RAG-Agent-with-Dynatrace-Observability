@@ -28,7 +28,7 @@ spec:
             - name: GOOGLE_CLOUD_LOCATION
               value: "us-central1"
             - name: MODEL_NAME
-              value: "gemini-2.5-flash"
+              value: "gemini-3.8-flash"
             - name: OTEL_SERVICE_NAME
               value: "google-adk-sre-agent-gke"
             - name: DEPLOYMENT_ENVIRONMENT

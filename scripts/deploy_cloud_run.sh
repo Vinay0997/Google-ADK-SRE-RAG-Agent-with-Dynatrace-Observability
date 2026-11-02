@@ -5,7 +5,7 @@ PROJECT_ID="${PROJECT_ID:-$(gcloud config get-value project 2>/dev/null)}"
 REGION="${REGION:-us-central1}"
 SERVICE_NAME="${SERVICE_NAME:-google-adk-sre-agent}"
 SA_NAME="${SA_NAME:-adk-observability-sa}"
-MODEL_NAME="${MODEL_NAME:-gemini-2.5-flash}"
+MODEL_NAME="${MODEL_NAME:-gemini-3.8-flash}"
 DT_OTLP_ENDPOINT="${DT_OTLP_ENDPOINT:-}"
 
 if [[ -z "${PROJECT_ID}" || "${PROJECT_ID}" == "(unset)" ]]; then

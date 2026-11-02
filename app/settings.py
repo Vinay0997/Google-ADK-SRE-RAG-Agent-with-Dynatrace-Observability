@@ -7,8 +7,8 @@ class Settings(BaseSettings):
     google_cloud_location: str = "us-central1"
     google_genai_use_vertexai: bool = True
     google_api_key: str = ""
-    model_name: str = "gemini-2.5-flash"
-    evaluator_model: str = "gemini-2.5-flash"
+    model_name: str = "gemini-3.8-flash"
+    evaluator_model: str = "gemini-3.8-flash"
 
     app_name: str = "sre_rag_observability"
     otel_service_name: str = "google-adk-sre-agent"
