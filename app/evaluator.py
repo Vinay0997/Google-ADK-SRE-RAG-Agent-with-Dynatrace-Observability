@@ -54,14 +54,11 @@ def _llm_evaluate_sync(question: str, answer: str, contexts: list[dict]) -> Eval
     evidence = "\n\n".join(
         f"[{item.get('title')}] {item.get('content')}" for item in contexts
     )
-    if settings.google_genai_use_vertexai:
-        client = genai.Client(
-            vertexai=True,
-            project=settings.google_cloud_project,
-            location=settings.google_cloud_location,
-        )
-    else:
-        client = genai.Client(api_key=settings.google_api_key)
+    client = genai.Client(
+        vertexai=True,
+        project=settings.google_cloud_project,
+        location=settings.google_cloud_location,
+    )
     prompt = f"""
 You are evaluating a RAG answer.
 Return ONLY valid JSON with numeric values from 0.0 to 1.0:

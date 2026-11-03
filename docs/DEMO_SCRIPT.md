@@ -3,12 +3,14 @@
 ## 0:00-1:00 — architecture
 Say:
 
-> I built a personal SRE RAG agent using Google ADK and Gemini and deployed it as a Streamlit application. The main focus is observability. I instrumented the request, ADK workflow, RAG tool, and evaluation stage with OpenTelemetry and export traces and custom metrics to Dynatrace over OTLP/HTTP.
+> I built a personal SRE RAG agent using Google ADK and Gemini and deployed it as a container on Google Cloud Run. The main focus is observability. I instrumented the request, ADK workflow, RAG tool, and evaluation stage with OpenTelemetry and export traces and custom metrics to Dynatrace over OTLP/HTTP.
 
 Show the architecture in `docs/ARCHITECTURE.md`.
 
-## 1:00-2:00 — Streamlit
-Show the Streamlit app, its question form, and the retrieved-runbook panel.
+## 1:00-2:00 — Cloud Run
+Show the Cloud Run service/revision and `/healthz`.
+
+Open Swagger at `/docs` or use curl.
 
 Question:
 
@@ -17,7 +19,7 @@ Our Cloud Run service started returning 5xx immediately after deployment. What s
 ```
 
 ## 2:00-4:00 — exact trace in Dynatrace
-Copy `trace_id` from the Streamlit request details panel.
+Copy `trace_id` from the API response.
 
 Explain:
 
@@ -44,7 +46,7 @@ Show:
 
 Say:
 
-> The application calculates hallucination metrics in the evaluation layer and emits them as OpenTelemetry metrics and trace attributes. Dynatrace receives and trends them.
+> Cloud Run itself does not provide hallucination metrics. I calculate these in the evaluation layer and emit them as OpenTelemetry metrics and trace attributes. Dynatrace receives and trends them.
 
 ## 5:30-6:15 — poor-evidence example
 Ask something unrelated to the knowledge base, for example:

@@ -7,7 +7,7 @@ pip install -r requirements.txt
 
 if [[ ! -f .env ]]; then
   cp .env.example .env
-  echo "Created .env from .env.example. Add a Gemini API key or Vertex AI configuration before testing."
+  echo "Created .env from .env.example. Edit GOOGLE_CLOUD_PROJECT before testing."
 fi
 
-streamlit run streamlit_app.py
+uvicorn main:api --host 0.0.0.0 --port 8080 --reload

@@ -76,4 +76,4 @@ Check the token and ingest scopes.
 Confirm the base endpoint is `https://<environment-id>.live.dynatrace.com/api/v2/otlp` and not the UI `.apps` hostname.
 
 ### No telemetry but agent works
-Check the Streamlit deployment logs. The application logs which telemetry exporter mode was selected at startup. If it says `console`, the endpoint/token were not supplied to the service.
+Check Cloud Run logs. The application logs which telemetry exporter mode was selected at startup. If it says `console`, the endpoint/token were not supplied to the service.

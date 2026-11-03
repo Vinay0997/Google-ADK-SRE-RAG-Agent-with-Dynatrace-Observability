@@ -3,9 +3,9 @@
 A GitHub-ready personal project for demonstrating:
 
 - Google Agent Development Kit (ADK)
-- Gemini through Vertex AI or a Gemini API key
+- Gemini on Vertex AI
 - Tool-based RAG over SRE runbooks
-- Streamlit deployment
+- Google Cloud Run deployment
 - OpenTelemetry distributed tracing and custom metrics
 - Dynatrace OTLP/HTTP ingestion
 - Groundedness, relevance, hallucination-risk, and retrieval-quality evaluation
@@ -19,7 +19,7 @@ A GitHub-ready personal project for demonstrating:
 User
   |
   v
-Streamlit UI
+FastAPI /ask on Cloud Run
   |
   v
 Google ADK Agent + Gemini
@@ -74,7 +74,6 @@ See `docs/ARCHITECTURE.md` for details.
 │   ├── DEMO_SCRIPT.md
 │   └── INTERVIEW_QA.md
 ├── tests/test_rag.py
-├── streamlit_app.py
 ├── main.py
 ├── Dockerfile
 ├── requirements.txt
@@ -98,39 +97,64 @@ On Windows PowerShell, activate the environment with:
 .\.venv\Scripts\Activate.ps1
 ```
 
-For the simplest local and Streamlit Community Cloud setup, create a Gemini API key in Google AI Studio and set these values in `.env`:
+Configure Vertex AI in `.env`:
 
 ```text
-GOOGLE_GENAI_USE_VERTEXAI=FALSE
-GOOGLE_API_KEY=your-gemini-api-key
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_CLOUD_PROJECT=your-gcp-project-id
+GOOGLE_CLOUD_LOCATION=us-central1
 ```
 
-Vertex AI remains supported. Set `GOOGLE_GENAI_USE_VERTEXAI=TRUE`, provide `GOOGLE_CLOUD_PROJECT`, and authenticate with Application Default Credentials if you prefer it.
-
-Start the UI:
+Authenticate locally with Application Default Credentials:
 
 ```bash
-streamlit run streamlit_app.py
+gcloud auth application-default login
 ```
 
-Open the URL printed by Streamlit, ask an SRE question, and inspect the answer, retrieved runbooks, evaluation scores, and trace ID. Without Dynatrace configuration, traces and metrics use console exporters.
+Start the API:
 
-## Deploy to Streamlit Community Cloud
-
-1. Push this repository to GitHub.
-2. In Streamlit Community Cloud, create an app from that repository and select `streamlit_app.py` as the main file.
-3. In **Advanced settings → Secrets**, add the following. These values are exposed to the app as environment variables; do not commit them.
-
-```toml
-GOOGLE_GENAI_USE_VERTEXAI = "FALSE"
-GOOGLE_API_KEY = "your-gemini-api-key"
-
-# Optional Dynatrace OTLP export
-# DYNATRACE_OTLP_ENDPOINT = "https://YOUR_ENVIRONMENT_ID.live.dynatrace.com/api/v2/otlp"
-# DYNATRACE_API_TOKEN = "your-dynatrace-token"
+```bash
+uvicorn main:api --host 0.0.0.0 --port 8080 --reload
 ```
 
-The Streamlit deployment route does not require `gcloud` or Cloud Run. The previous FastAPI and Cloud Run files remain available only for an API/container deployment option.
+In another terminal, run the smoke test:
+
+```bash
+./scripts/smoke_test.sh
+```
+
+Without Dynatrace configuration, traces and metrics use console exporters.
+
+## Deploy to Google Cloud Run
+
+Set your project and region in Cloud Shell or a machine with the Google Cloud CLI:
+
+```bash
+export PROJECT_ID="your-gcp-project-id"
+export REGION="us-central1"
+gcloud config set project "$PROJECT_ID"
+```
+
+Enable the required Google Cloud APIs and create the Cloud Run service account:
+
+```bash
+./scripts/setup_gcp.sh
+```
+
+Create a Dynatrace Classic token with `openTelemetryTrace.ingest` and `metrics.ingest`, then store it in Secret Manager:
+
+```bash
+./scripts/create_dynatrace_secret.sh
+export DT_OTLP_ENDPOINT="https://YOUR_ENVIRONMENT_ID.live.dynatrace.com/api/v2/otlp"
+```
+
+Deploy the FastAPI service:
+
+```bash
+./scripts/deploy_cloud_run.sh
+```
+
+The deploy script prints the Cloud Run URL, Swagger URL, and a `curl` command for `POST /ask`.
 
 # What to show in Dynatrace
 
@@ -151,15 +175,16 @@ agent.hallucination.risk
 For traces, explain the hierarchy:
 
 ```text
-streamlit.agent.request
-├── agent.execute
-│   └── rag.retrieve
-└── evaluation.rag_quality
+http POST /ask
+└── agent.request
+    ├── agent.execute
+    │   └── rag.retrieve
+    └── evaluation.rag_quality
 ```
 
 # Critical interview statement
 
-**Streamlit and Dynatrace do not automatically calculate hallucination or groundedness.** The application evaluator calculates the quality scores from the question, retrieved context, and final answer; OpenTelemetry exports the resulting metrics and trace attributes to Dynatrace.
+**Cloud Run and Dynatrace do not automatically calculate hallucination or groundedness.** The application evaluator calculates the quality scores from the question, retrieved context, and final answer; OpenTelemetry exports the resulting metrics and trace attributes to Dynatrace.
 
 # GKE
 
@@ -169,7 +194,7 @@ The `k8s/` folder shows how the same container can run as a Kubernetes Deploymen
 
 - Never commit `.env`.
 - Never commit the Dynatrace token.
-- Store deployment secrets in Streamlit Community Cloud Secrets.
+- Store the Dynatrace token in Google Secret Manager for Cloud Run.
 - Do not attach raw sensitive prompts or retrieved customer content as telemetry attributes.
 - This sample only records safe IDs, timing, scores, and low-cardinality metadata.
 
