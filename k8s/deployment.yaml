@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: google-adk-sre-agent
+  namespace: sre-agent
   labels:
     app: google-adk-sre-agent
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: google-adk-sre-agent
@@ -17,29 +18,21 @@ spec:
       serviceAccountName: adk-observability-ksa
       containers:
         - name: agent
-          image: REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/google-adk-sre-agent:latest
+          image: ${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/google-adk-sre-agent:latest
           ports:
             - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: agent-config
           env:
-            - name: GOOGLE_GENAI_USE_VERTEXAI
-              value: "TRUE"
-            - name: GOOGLE_CLOUD_PROJECT
-              value: "PROJECT_ID"
-            - name: GOOGLE_CLOUD_LOCATION
-              value: "us-central1"
-            - name: MODEL_NAME
-              value: "gemini-3.8-flash"
-            - name: OTEL_SERVICE_NAME
-              value: "google-adk-sre-agent-gke"
-            - name: DEPLOYMENT_ENVIRONMENT
-              value: "gke"
-            - name: DYNATRACE_OTLP_ENDPOINT
-              value: "https://YOUR_ENVIRONMENT_ID.live.dynatrace.com/api/v2/otlp"
-            - name: DYNATRACE_API_TOKEN
+            - name: POD_NAME
               valueFrom:
-                secretKeyRef:
-                  name: dynatrace-api-token
-                  key: token
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           resources:
             requests:
               cpu: "250m"

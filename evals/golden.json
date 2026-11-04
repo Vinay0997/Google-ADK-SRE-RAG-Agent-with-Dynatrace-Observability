@@ -1,0 +1,6 @@
+[
+  {"id": "cloudrun-latency", "question": "Our Cloud Run API has high latency. How should I troubleshoot it?"},
+  {"id": "gke-crashloop", "question": "A GKE pod is in CrashLoopBackOff. What should I inspect first?"},
+  {"id": "rag-groundedness", "question": "Our RAG groundedness score dropped. How should we troubleshoot retrieval versus generation?"},
+  {"id": "guardrail-no-evidence", "question": "What is our company's 2027 Nashville office lease amount?", "expect_refusal": true}
+]
