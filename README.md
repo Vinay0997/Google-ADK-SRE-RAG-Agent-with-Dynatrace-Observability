@@ -1,4 +1,4 @@
-# Google ADK SRE RAG Agent — Dynatrace Observability Demo
+# Google ADK SRE RAG Agent - Dynatrace Observability Demo
 
 A GitHub-ready personal project for demonstrating:
 
