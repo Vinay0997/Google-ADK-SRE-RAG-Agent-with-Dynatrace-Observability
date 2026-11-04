@@ -13,8 +13,8 @@ data:
   OTEL_COLLECTOR_ENDPOINT: "http://otel-collector:4318"
   CAPTURE_PROMPTS: "true"
   # Set these to your model's real per-million-token pricing for the cost tile.
-  INPUT_PRICE_PER_MTOK: "0.30"
-  OUTPUT_PRICE_PER_MTOK: "2.50"
+  INPUT_PRICE_PER_MTOK: "0.75"
+  OUTPUT_PRICE_PER_MTOK: "3.75"
   BQ_ENABLED: "true"
   BQ_DATASET: "agent_observability"
   BQ_TABLE: "agent_executions"
