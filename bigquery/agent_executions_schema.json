@@ -1,0 +1,21 @@
+[
+  {"name": "timestamp", "type": "TIMESTAMP", "mode": "REQUIRED"},
+  {"name": "trace_id", "type": "STRING"},
+  {"name": "session_id", "type": "STRING"},
+  {"name": "user_id", "type": "STRING"},
+  {"name": "question", "type": "STRING"},
+  {"name": "answer", "type": "STRING"},
+  {"name": "model", "type": "STRING"},
+  {"name": "provider", "type": "STRING"},
+  {"name": "input_tokens", "type": "INTEGER"},
+  {"name": "output_tokens", "type": "INTEGER"},
+  {"name": "estimated_cost_usd", "type": "FLOAT"},
+  {"name": "duration_seconds", "type": "FLOAT"},
+  {"name": "tool_calls", "type": "STRING"},
+  {"name": "retrieved_doc_ids", "type": "STRING"},
+  {"name": "groundedness", "type": "FLOAT"},
+  {"name": "hallucination_risk", "type": "FLOAT"},
+  {"name": "workflow_success", "type": "BOOLEAN"},
+  {"name": "error", "type": "STRING"},
+  {"name": "pod_name", "type": "STRING"}
+]

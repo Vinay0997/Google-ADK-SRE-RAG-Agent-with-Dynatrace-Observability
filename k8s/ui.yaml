@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sre-agent-ui
+  namespace: sre-agent
+  labels:
+    app: sre-agent-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sre-agent-ui
+  template:
+    metadata:
+      labels:
+        app: sre-agent-ui
+    spec:
+      containers:
+        - name: ui
+          image: ${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/sre-agent-ui:latest
+          ports:
+            - containerPort: 8501
+          env:
+            - name: AGENT_URL
+              value: "http://google-adk-sre-agent"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sre-agent-ui
+  namespace: sre-agent
+spec:
+  type: LoadBalancer
+  selector:
+    app: sre-agent-ui
+  ports:
+    - port: 80
+      targetPort: 8501
