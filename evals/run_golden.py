@@ -12,7 +12,7 @@ from app.telemetry import meter, tracer
 AGENT_URL = os.getenv("AGENT_URL", "http://localhost:8080").rstrip("/")
 GROUNDEDNESS_MIN = float(os.getenv("GROUNDEDNESS_MIN", "0.6"))
 HALLUCINATION_MAX = float(os.getenv("HALLUCINATION_MAX", "0.4"))
-REFUSAL_HINTS = ("don't have", "do not have", "not enough", "no information", "cannot find", "can't find", "not available")
+REFUSAL_HINTS = ("don't have", "do not have", "not enough", "no information", "cannot find", "can't find", "not available", "do not contain", "does not contain", "not contain any", "unavailable", "i can only answer")
 
 pass_counter = meter.create_counter("eval.golden.pass.count", description="Golden cases passed")
 fail_counter = meter.create_counter("eval.golden.fail.count", description="Golden cases failed")
