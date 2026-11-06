@@ -15,7 +15,7 @@ from app.agent import root_agent
 from app.bq_sink import write_execution_row
 from app.evaluator import evaluate_response
 from app.genai import estimate_cost_usd, messages_json
-from app.rag import CURRENT_RETRIEVAL, retrieve_runbooks
+from app.rag import CURRENT_RETRIEVAL, retrieve_runbooks, set_current_role
 from app.settings import get_settings
 from app.telemetry import (
     TELEMETRY,
@@ -57,6 +57,7 @@ api = FastAPI(
 class AskRequest(BaseModel):
     question: str = Field(min_length=3, max_length=4000)
     user_id: str = "demo-user"
+    role: str = "viewer"
     session_id: str | None = None
 
 
@@ -120,6 +121,7 @@ async def ask(payload: AskRequest):
     started = time.perf_counter()
     session_id = payload.session_id or f"session-{uuid.uuid4().hex[:12]}"
     CURRENT_RETRIEVAL.set([])
+    set_current_role(payload.role)
     request_counter.add(1, {"route": "/ask"})
     model = settings.model_name
     llm_span = None
@@ -130,6 +132,7 @@ async def ask(payload: AskRequest):
         trace_id = f"{request_span.get_span_context().trace_id:032x}"
         request_span.set_attribute("agent.session_id", session_id)
         request_span.set_attribute("agent.user_id", payload.user_id)
+        request_span.set_attribute("agent.user_role", payload.role)
         request_span.set_attribute("agent.question.length", len(payload.question))
 
         try:
@@ -164,7 +167,7 @@ async def ask(payload: AskRequest):
 
             contexts = CURRENT_RETRIEVAL.get()
             if not contexts:
-                contexts = retrieve_runbooks(payload.question)
+                contexts = retrieve_runbooks(payload.question, role=payload.role)
                 request_span.set_attribute("rag.fallback_retrieval", True)
 
             evaluation = await evaluate_response(payload.question, final_text, contexts)
@@ -220,6 +223,7 @@ async def ask(payload: AskRequest):
                         "trace_id": trace_id,
                         "session_id": session_id,
                         "user_id": payload.user_id,
+                        "user_role": payload.role,
                         "question": payload.question,
                         "answer": final_text,
                         "model": model,
@@ -273,6 +277,7 @@ async def ask(payload: AskRequest):
                         "trace_id": trace_id,
                         "session_id": session_id,
                         "user_id": payload.user_id,
+                        "user_role": payload.role,
                         "question": payload.question,
                         "model": model,
                         "provider": PROVIDER,

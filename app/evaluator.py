@@ -96,11 +96,33 @@ ANSWER:
     )
 
 
+_REFUSAL_RE = re.compile(
+    r"no runbook (available|covers|contains)|access level|do(es)? not contain enough evidence",
+    re.IGNORECASE,
+)
+
+
+def _is_refusal(answer: str) -> bool:
+    return len(answer) < 500 and bool(_REFUSAL_RE.search(answer))
+
+
+def _refusal_result() -> EvaluationResult:
+    return EvaluationResult(
+        groundedness=1.0,
+        answer_relevance=1.0,
+        hallucination_risk=0.0,
+        evaluator="refusal-rule",
+        notes="No documents permitted for this role; correct refusal.",
+    )
+
+
 async def evaluate_response(question: str, answer: str, contexts: list[dict]) -> EvaluationResult:
     settings = get_settings()
     with tracer.start_as_current_span("evaluation.rag_quality") as span:
         try:
-            if settings.use_llm_evaluator and settings.google_cloud_project:
+            if not contexts and _is_refusal(answer):
+                result = _refusal_result()
+            elif settings.use_llm_evaluator and settings.google_cloud_project:
                 result = await asyncio.to_thread(
                     _llm_evaluate_sync, question, answer, contexts
                 )
