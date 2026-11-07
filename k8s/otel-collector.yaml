@@ -21,7 +21,7 @@ data:
       resource/cluster:
         attributes:
           - key: k8s.cluster.name
-            value: sre-agent-cluster
+            value: sre-rag-gke
             action: upsert
     exporters:
       otlphttp/dynatrace:
@@ -47,7 +47,7 @@ metadata:
   labels:
     app: otel-collector
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: otel-collector
@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: collector
-          image: otel/opentelemetry-collector-contrib:0.115.0
+          image: otel/opentelemetry-collector-contrib:0.115.1
           args: ["--config=/etc/otelcol/config.yaml"]
           ports:
             - containerPort: 4317

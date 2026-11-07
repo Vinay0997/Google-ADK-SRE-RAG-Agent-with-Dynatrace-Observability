@@ -6,7 +6,7 @@ metadata:
   labels:
     app: google-adk-sre-agent
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: google-adk-sre-agent
@@ -18,7 +18,7 @@ spec:
       serviceAccountName: adk-observability-ksa
       containers:
         - name: agent
-          image: ${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/google-adk-sre-agent:latest
+          image: us-central1-docker.pkg.dev/adk-dynatrace-observability/cloud-run-source-deploy/google-adk-sre-rag-agent-with-dynatrace-observability/google-adk-sre-agent:6ea1350e0a81aa2c1c2644fe5b26e0748440d718
           ports:
             - containerPort: 8080
           envFrom:

@@ -17,9 +17,9 @@ spec:
     spec:
       containers:
         - name: ui
-          image: ${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/sre-agent-ui:latest
+          image: us-central1-docker.pkg.dev/adk-dynatrace-observability/cloud-run-source-deploy/sre-agent-ui@sha256:d6ab542bcb0fb743ed08287504a7d3257917929f86431a0a49547ed28670e72e
           ports:
-            - containerPort: 8501
+            - containerPort: 8080
           env:
             - name: AGENT_URL
               value: "http://google-adk-sre-agent"
@@ -37,9 +37,9 @@ metadata:
   name: sre-agent-ui
   namespace: sre-agent
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: sre-agent-ui
   ports:
     - port: 80
-      targetPort: 8501
+      targetPort: 8080
