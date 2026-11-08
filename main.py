@@ -15,7 +15,7 @@ from app.agent import root_agent
 from app.bq_sink import write_execution_row
 from app.evaluator import evaluate_response
 from app.genai import estimate_cost_usd, messages_json
-from app.rag import CURRENT_RETRIEVAL, retrieve_runbooks, set_current_role
+from app.rag import CURRENT_RETRIEVAL, reset_search_budget, set_current_role
 from app.settings import get_settings
 from app.telemetry import (
     TELEMETRY,
@@ -121,6 +121,7 @@ async def ask(payload: AskRequest):
     started = time.perf_counter()
     session_id = payload.session_id or f"session-{uuid.uuid4().hex[:12]}"
     CURRENT_RETRIEVAL.set([])
+    reset_search_budget()
     set_current_role(payload.role)
     request_counter.add(1, {"route": "/ask"})
     model = settings.model_name
@@ -166,9 +167,6 @@ async def ask(payload: AskRequest):
                 raise RuntimeError("ADK returned no final text response")
 
             contexts = CURRENT_RETRIEVAL.get()
-            if not contexts:
-                contexts = retrieve_runbooks(payload.question, role=payload.role)
-                request_span.set_attribute("rag.fallback_retrieval", True)
 
             evaluation = await evaluate_response(payload.question, final_text, contexts)
 

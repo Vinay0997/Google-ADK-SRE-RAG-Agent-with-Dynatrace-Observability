@@ -19,6 +19,14 @@ CURRENT_RETRIEVAL: ContextVar[list[dict[str, Any]]] = ContextVar(
 )
 CURRENT_ROLE: ContextVar[str] = ContextVar("current_role", default="viewer")
 VALID_ROLES = {"sre", "clinical_ops", "security_privacy", "viewer"}
+SEARCH_BUDGET: ContextVar[dict[str, int] | None] = ContextVar(
+    "search_budget", default=None
+)
+
+
+def reset_search_budget() -> None:
+    SEARCH_BUDGET.set({"calls": 0})
+
 _IDENT = re.compile(r"^[A-Za-z0-9_\-]+$")
 _bq_client = None
 
@@ -115,9 +123,14 @@ def _retrieve_bigquery(query: str, top_k: int, role: str) -> list[dict[str, Any]
     ]
 
 
-def _retrieve_lexical(query: str, top_k: int) -> list[dict[str, Any]]:
+def _retrieve_lexical(
+    query: str, top_k: int, role: str
+) -> list[dict[str, Any]]:
     scored = []
     for doc in _load_runbooks():
+        allowed_roles = doc.get("allowed_roles")
+        if not isinstance(allowed_roles, list) or role not in allowed_roles:
+            continue
         score = _score(query, doc)
         scored.append({**doc, "score": round(score, 4), "backend": "lexical"})
     scored.sort(key=lambda item: item["score"], reverse=True)
@@ -138,7 +151,7 @@ def retrieve_runbooks(
             logger.exception("BigQuery retrieval failed")
             if not _flag("BQ_RAG_FALLBACK"):
                 return []
-    return _retrieve_lexical(query, top_k)
+    return _retrieve_lexical(query, top_k, role)
 
 
 def search_runbooks(query: str) -> dict[str, Any]:
@@ -150,10 +163,36 @@ def search_runbooks(query: str) -> dict[str, Any]:
     Returns:
         Matching runbook passages and relevance scores.
     """
+    budget = SEARCH_BUDGET.get()
+    reason = None
+    if budget is None:
+        reason = "missing_request_context"
+    elif budget["calls"] >= 1:
+        reason = "retrieval_call_limit"
+
+    if reason is not None:
+        with tracer.start_as_current_span("guardrail.decision") as span:
+            span.set_attribute("guardrail.name", "retrieval_budget")
+            span.set_attribute("guardrail.action", "block")
+            span.set_attribute("guardrail.reason", reason)
+            span.set_attribute("agent.user_role", CURRENT_ROLE.get())
+        return {
+            "status": "blocked",
+            "reason": reason,
+            "matches": [],
+            "message": (
+                "Do not search again. Use only evidence already returned. "
+                "If it is insufficient, state that limitation."
+            ),
+        }
+
+    budget["calls"] += 1
     started = time.perf_counter()
     with tracer.start_as_current_span("rag.retrieve") as span:
         matches = retrieve_runbooks(query)
-        CURRENT_RETRIEVAL.set(matches)
+        evidence = CURRENT_RETRIEVAL.get()
+        evidence.clear()
+        evidence.extend(matches)
         elapsed = time.perf_counter() - started
         best_score = matches[0]["score"] if matches else 0.0
 

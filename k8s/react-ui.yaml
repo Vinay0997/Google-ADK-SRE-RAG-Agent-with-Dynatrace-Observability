@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sre-agent-react-ui
+  namespace: sre-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sre-agent-react-ui
+  template:
+    metadata:
+      labels:
+        app: sre-agent-react-ui
+    spec:
+      containers:
+        - name: ui
+          image: us-central1-docker.pkg.dev/adk-dynatrace-observability/cloud-run-source-deploy/sre-agent-react-ui:demo-20261108120258
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sre-agent-react-ui
+  namespace: sre-agent
+spec:
+  type: ClusterIP
+  selector:
+    app: sre-agent-react-ui
+  ports:
+    - port: 80
+      targetPort: 8080

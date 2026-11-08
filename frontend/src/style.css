@@ -1,0 +1,35 @@
+:root{font-family:Inter,system-ui,sans-serif;color:#e4eaf5;background:#0b1220}
+*{box-sizing:border-box}
+body{margin:0}
+main{max-width:1100px;margin:auto;padding:36px 22px}
+h1{font-size:36px;margin:10px 0}
+h2{font-size:20px;margin-top:0}
+p{line-height:1.65}
+.eyebrow{color:#77ddce;font-size:12px;letter-spacing:2px}
+header p,.muted{color:#a8b7cc}
+section,.metric{background:#121e30;border:1px solid #2b3b53;border-radius:14px;padding:24px;margin:20px 0}
+.notice{padding:14px 18px;background:#252319;border:1px solid #66552c;border-radius:10px;line-height:1.6}
+.examples{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+button,select,textarea{font:inherit}
+button{border:1px solid #3a526f;border-radius:8px;background:#1c3049;color:#e4eaf5;padding:10px 14px;cursor:pointer}
+button:hover{background:#294563}
+button:disabled{opacity:.55;cursor:wait}
+textarea{display:block;width:100%;min-height:110px;margin:10px 0 18px;background:#0c1626;color:#fff;border:1px solid #435775;border-radius:8px;padding:14px}
+.controls{display:flex;align-items:end;justify-content:space-between;gap:15px}
+select{display:block;margin-top:8px;background:#0c1626;color:#fff;border:1px solid #435775;padding:10px;border-radius:8px;min-width:140px}
+.primary{background:#66d6c3;color:#09231f;font-weight:700}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.metric{margin:0;padding:20px}
+.metric span{display:block;color:#a8b7cc;font-size:13px}
+.metric strong{display:block;font-size:27px;margin-top:10px}
+.document{padding:14px 0;border-bottom:1px solid #2b3b53}
+.document div{color:#a8b7cc;margin-top:6px}
+.error{background:#461d2a;padding:15px;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:15px}
+pre{background:#09111d;padding:15px;overflow:auto;border-radius:8px}
+code{overflow-wrap:anywhere}
+a{color:#77ddce}
+dl{display:grid;grid-template-columns:180px 1fr;gap:12px}
+dd{margin:0;overflow-wrap:anywhere}
+dt{color:#a8b7cc}
+li{line-height:1.7}
+@media(max-width:700px){.metrics{grid-template-columns:repeat(2,1fr)}dl{grid-template-columns:1fr}.controls{align-items:stretch;flex-direction:column}h1{font-size:28px}}

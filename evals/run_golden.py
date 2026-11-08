@@ -12,7 +12,7 @@ from app.telemetry import meter, tracer
 AGENT_URL = os.getenv("AGENT_URL", "http://localhost:8080").rstrip("/")
 GROUNDEDNESS_MIN = float(os.getenv("GROUNDEDNESS_MIN", "0.6"))
 HALLUCINATION_MAX = float(os.getenv("HALLUCINATION_MAX", "0.4"))
-REFUSAL_HINTS = ("don't have", "do not have", "not enough", "no information", "cannot find", "can't find", "not available", "do not contain", "does not contain", "not contain any", "unavailable", "i can only answer")
+REFUSAL_HINTS = ("don't have", "do not have", "not enough", "no information", "cannot find", "can't find", "not available", "do not contain", "does not contain", "not contain any", "unavailable", "i can only answer", "no runbook")
 
 pass_counter = meter.create_counter("eval.golden.pass.count", description="Golden cases passed")
 fail_counter = meter.create_counter("eval.golden.fail.count", description="Golden cases failed")
@@ -40,12 +40,27 @@ def main() -> int:
                 try:
                     resp = requests.post(
                         f"{AGENT_URL}/ask",
-                        json={"question": item["question"], "user_id": "golden-eval"},
+                        json={
+                            "question": item["question"],
+                            "user_id": "golden-eval",
+                            "role": item.get("role", "sre"),
+                        },
                         timeout=180,
                     )
                     resp.raise_for_status()
                     body = resp.json()
                     ok = check_case(item, body)
+                    print(
+                        "DETAIL " + json.dumps({
+                            "case": item["id"],
+                            "role": item.get("role", "sre"),
+                            "trace_id": body.get("trace_id"),
+                            "retrieved_documents": body.get("retrieved_documents", []),
+                            "evaluation": body.get("evaluation", {}),
+                            "answer_preview": body.get("answer", "")[:300],
+                        }),
+                        flush=True,
+                    )
                     span.set_attribute("eval.target_trace_id", body.get("trace_id", ""))
                     score_hist.record(float(body.get("evaluation", {}).get("groundedness", 0.0)), {"case": item["id"]})
                 except Exception as exc:
