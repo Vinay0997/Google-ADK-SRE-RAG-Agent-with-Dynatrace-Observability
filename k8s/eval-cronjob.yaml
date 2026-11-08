@@ -17,7 +17,7 @@ spec:
           serviceAccountName: adk-observability-ksa
           containers:
             - name: golden-eval
-              image: ${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/google-adk-sre-agent:latest
+              image: us-central1-docker.pkg.dev/adk-dynatrace-observability/cloud-run-source-deploy/google-adk-sre-rag-agent-with-dynatrace-observability/google-adk-sre-agent:eval-fix-20261108163716
               command: ["python", "-m", "evals.run_golden"]
               envFrom:
                 - configMapRef:

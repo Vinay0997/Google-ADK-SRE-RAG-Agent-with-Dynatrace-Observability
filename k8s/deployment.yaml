@@ -18,7 +18,7 @@ spec:
       serviceAccountName: adk-observability-ksa
       containers:
         - name: agent
-          image: us-central1-docker.pkg.dev/adk-dynatrace-observability/cloud-run-source-deploy/google-adk-sre-rag-agent-with-dynatrace-observability/google-adk-sre-agent:6ea1350e0a81aa2c1c2644fe5b26e0748440d718
+          image: us-central1-docker.pkg.dev/adk-dynatrace-observability/cloud-run-source-deploy/google-adk-sre-rag-agent-with-dynatrace-observability/google-adk-sre-agent:eval-fix-20261108163716
           ports:
             - containerPort: 8080
           envFrom:

@@ -112,7 +112,7 @@ def _refusal_result() -> EvaluationResult:
         answer_relevance=1.0,
         hallucination_risk=0.0,
         evaluator="refusal-rule",
-        notes="No documents permitted for this role; correct refusal.",
+        notes="Recognized no-evidence refusal; the cause of missing evidence and refusal appropriateness are not established by this rule.",
     )
 
 
@@ -120,7 +120,23 @@ async def evaluate_response(question: str, answer: str, contexts: list[dict]) ->
     settings = get_settings()
     with tracer.start_as_current_span("evaluation.rag_quality") as span:
         try:
-            if not contexts and _is_refusal(answer):
+            if (
+                not contexts
+                and answer.strip()
+                == "I can only answer SRE troubleshooting questions based on the runbooks."
+            ):
+                result = EvaluationResult(
+                    groundedness=1.0,
+                    answer_relevance=0.0,
+                    hallucination_risk=0.0,
+                    evaluator="refusal-rule",
+                    notes=(
+                        "Exact scope refusal with no retrieved evidence; "
+                        "no factual answer supplied. This rule does not "
+                        "establish whether refusing the question was appropriate."
+                    ),
+                )
+            elif not contexts and _is_refusal(answer):
                 result = _refusal_result()
             elif settings.use_llm_evaluator and settings.google_cloud_project:
                 result = await asyncio.to_thread(
