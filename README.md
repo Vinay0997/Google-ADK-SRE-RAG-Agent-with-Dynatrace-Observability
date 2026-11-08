@@ -1,225 +1,317 @@
-# Google ADK SRE RAG Agent - Dynatrace Observability Demo
+# Google ADK SRE RAG Agent with Dynatrace Observability
 
-A GitHub-ready personal project for demonstrating:
+A demonstration SRE assistant built with Google ADK, a React frontend, BigQuery-backed runbook retrieval, and OpenTelemetry instrumentation for Dynatrace observability.
 
-- Google Agent Development Kit (ADK)
-- Gemini on Vertex AI
-- Tool-based RAG over SRE runbooks
-- Google Cloud Run deployment
-- OpenTelemetry distributed tracing and custom metrics
-- Dynatrace OTLP/HTTP ingestion
-- Groundedness, relevance, hallucination-risk, and retrieval-quality evaluation
-- GKE deployment pattern for discussion
+The assistant uses retrieved runbook evidence to answer operational questions, applies role-based document filtering, evaluates responses, and returns trace IDs.
 
-> This is a personal demo. It contains no customer code or customer data.
+The application runs on Google Kubernetes Engine (GKE). The screen-share workflow uses Cloud Shell Web Preview; a public application URL is not required.
 
 ## Architecture
 
 ```text
-User
-  |
-  v
-FastAPI /ask on Cloud Run
-  |
-  v
-Google ADK Agent + Gemini
-  |
-  +--> search_runbooks tool --> knowledge/runbooks.json
-  |
-  v
-Final answer
-  |
-  v
-RAG evaluator
-  |
-  +--> groundedness
-  +--> answer relevance
-  +--> hallucination risk
-  |
-  v
-OpenTelemetry traces + metrics
-  |
-  v
-OTLP/HTTP
-  |
-  v
-Dynatrace SaaS
+Browser / Cloud Shell Web Preview
+                |
+        kubectl port-forward
+                |
+         React UI / NGINX
+                |
+          Backend API
+                |
+       Google ADK workflow
+         |             |
+ BigQuery retrieval   Response evaluation
+         |
+ Role-filtered runbook evidence
+
+Backend instrumentation -> OpenTelemetry Collector -> Dynatrace
 ```
 
-See `docs/ARCHITECTURE.md` for details.
+The observability path must be verified in Dynatrace; a returned trace ID alone does not establish successful ingestion.
 
-## Repository layout
+## Demo Data and Security Boundary
 
-```text
-.
-├── app/
-│   ├── agent.py
-│   ├── evaluator.py
-│   ├── rag.py
-│   ├── settings.py
-│   └── telemetry.py
-├── knowledge/runbooks.json
-├── scripts/
-│   ├── setup_gcp.sh
-│   ├── create_dynatrace_secret.sh
-│   ├── deploy_cloud_run.sh
-│   ├── run_local.sh
-│   └── smoke_test.sh
-├── k8s/
-│   ├── deployment.yaml
-│   └── service.yaml
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── DYNATRACE_SETUP.md
-│   ├── DEMO_SCRIPT.md
-│   └── INTERVIEW_QA.md
-├── tests/test_rag.py
-├── main.py
-├── Dockerfile
-├── requirements.txt
-└── .env.example
-```
+Use fictional demonstration runbooks and incident content. Do not submit real patient information, credentials, or confidential incident details.
 
-## Run locally
+Role labels used by the demonstration include `sre`, `clinical_ops`, `security_privacy`, and `viewer`.
 
-Create a virtual environment and install the application:
+Caller-selected roles are demonstration inputs, not authenticated identities. Role-conditioned retrieval must not be presented as production authentication or proof that callers are authorized to assert a role.
+
+## Deployment Components
+
+| Component | Deployment |
+|---|---|
+| Backend | `google-adk-sre-agent` |
+| React frontend | `sre-agent-react-ui` |
+| OpenTelemetry Collector | `otel-collector` |
+
+Previous UI Deployments, `sre-agent-ui` and `sre-agent-ui-preview`, remain at zero replicas and are not part of the active frontend workflow.
+
+### Last reported deployment snapshot
+
+The terminal output shared on November 8, 2026 showed:
+
+- Backend, React, and collector each at `1/1` ready.
+- Backend image tag `eval-fix-20261108163716`.
+- The same backend image reference in `k8s/deployment.yaml` and `k8s/eval-cronjob.yaml`.
+- Local `main` and `origin/main` at commit `3441280` before subsequent README changes.
+
+This is a historical snapshot, not a claim of current deployment state. Matching image references do not prove the intended application behavior or that a live CronJob uses the saved image.
+
+## Prerequisites
+
+- Access to the intended Google Cloud project and GKE cluster.
+- Configured `gcloud` and `kubectl` credentials.
+- A Python environment with the repository dependencies installed.
+- Required BigQuery and Vertex AI permissions for retrieval.
+- Dynatrace access to verify telemetry.
+- Cloud Shell for the screen-share workflow.
+
+Never commit credentials, API tokens, service-account keys, or secret-bearing environment files.
+
+## Verify Deployment Health
+
+Confirm the Kubernetes context before making changes:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
+kubectl config current-context
+kubectl -n sre-agent get deployments
 ```
 
-On Windows PowerShell, activate the environment with:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-Configure Vertex AI in `.env`:
-
-```text
-GOOGLE_GENAI_USE_VERTEXAI=TRUE
-GOOGLE_CLOUD_PROJECT=your-gcp-project-id
-GOOGLE_CLOUD_LOCATION=us-central1
-```
-
-Authenticate locally with Application Default Credentials:
+Check rollout status:
 
 ```bash
-gcloud auth application-default login
+kubectl -n sre-agent rollout status deployment/google-adk-sre-agent --timeout=300s
+kubectl -n sre-agent rollout status deployment/sre-agent-react-ui --timeout=180s
+kubectl -n sre-agent rollout status deployment/otel-collector --timeout=180s
 ```
 
-Start the API:
+Inspect the live backend image and saved references:
 
 ```bash
-uvicorn main:api --host 0.0.0.0 --port 8080 --reload
+kubectl -n sre-agent get deployment google-adk-sre-agent \
+  -o jsonpath='{range .spec.template.spec.containers[*]}{.name}{"\t"}{.image}{"\n"}{end}'
+
+grep -n 'image:' k8s/deployment.yaml k8s/eval-cronjob.yaml
 ```
 
-In another terminal, run the smoke test:
+## Open the React Demo
+
+In a dedicated Cloud Shell terminal:
 
 ```bash
-./scripts/smoke_test.sh
+kubectl -n sre-agent port-forward service/sre-agent-react-ui 8084:80
 ```
 
-Without Dynatrace configuration, traces and metrics use console exporters.
+Leave the command running and open Cloud Shell Web Preview on port `8084`.
 
-## Deploy to Google Cloud Run
+Share the browser view during the demonstration. Cloudflare, a public domain, and a public application endpoint are not required for this workflow.
 
-Set your project and region in Cloud Shell or a machine with the Google Cloud CLI:
+Restart the port-forward if it exits or the selected pod is replaced.
+
+## Retrieval and Guardrails
+
+The demonstration uses BigQuery-backed retrieval and role-filtered runbook evidence.
+
+Review the actual code and deployment configuration before changing retrieval settings, similarity thresholds, fallback behavior, or document permissions.
+
+### Scope refusal
+
+The intended out-of-scope response is:
+
+```text
+I can only answer SRE troubleshooting questions based on the runbooks.
+```
+
+The evaluator correction is intended to handle the exact no-evidence scope refusal through `refusal-rule` rather than a variable LLM judge. Verify this behavior against the deployed release.
+
+A refusal does not automatically prove correct authorization behavior. Inspect the retrieved evidence and answer for restricted-data disclosure.
+
+### Corpus updates
+
+The repository includes an additive RAG-quality corpus update:
+
+```text
+bigquery/add_rag_quality_runbook.sql
+```
+
+Review the SQL, target project, model, and permissions before executing it. BigQuery writes and embedding generation can incur charges.
+
+The RAG troubleshooting case should retrieve `rag-quality` rather than merely return a refusal. Do not change an answer case into a refusal case solely to obtain a passing evaluation.
+
+## Run Unit Tests
+
+From the repository root, with the project dependencies installed:
 
 ```bash
-export PROJECT_ID="your-gcp-project-id"
-export REGION="us-central1"
-gcloud config set project "$PROJECT_ID"
+python -m pytest -q
 ```
 
-Enable the required Google Cloud APIs and create the Cloud Run service account:
+For the retrieval and refusal regression suites:
 
 ```bash
-./scripts/setup_gcp.sh
+python -m pytest tests/test_rag.py tests/test_evaluator_refusals.py -q
 ```
 
-Create a Dynatrace Classic token with `openTelemetryTrace.ingest` and `metrics.ingest`, then store it in Secret Manager:
+Record the actual test summary. Do not treat historical counts as verification of the current checkout.
+
+If telemetry exporter errors appear after the test summary, investigate them separately from test assertion results.
+
+## Run the Golden Evaluation
+
+### 1. Connect to the backend
+
+In a dedicated terminal:
 
 ```bash
-./scripts/create_dynatrace_secret.sh
-export DT_OTLP_ENDPOINT="https://YOUR_ENVIRONMENT_ID.live.dynatrace.com/api/v2/otlp"
+kubectl -n sre-agent port-forward \
+  service/google-adk-sre-agent 8085:80 \
+  --address 127.0.0.1
 ```
 
-Deploy the FastAPI service:
+Keep this command running. If a working port-forward already exists, do not start a duplicate on the same port.
+
+### 2. Run the evaluation
+
+From the repository root:
 
 ```bash
-./scripts/deploy_cloud_run.sh
+LOG_FILE="$HOME/golden-final-$(date +%Y%m%d-%H%M%S).log"
+
+AGENT_URL=http://127.0.0.1:8085 \
+  python -u -m evals.run_golden > "$LOG_FILE" 2>&1
+
+EVAL_EXIT=$?
+
+grep -E '^(DETAIL |ERROR |PASS |FAIL |SUMMARY )' "$LOG_FILE"
+echo "Golden evaluation exit code: $EVAL_EXIT"
 ```
 
-The deploy script prints the Cloud Run URL, Swagger URL, and a `curl` command for `POST /ask`.
+### Expected scenarios
 
-# What to show in Dynatrace
+| Case | Verification |
+|---|---|
+| `cloudrun-latency` | Grounded Cloud Run troubleshooting with retrieved evidence |
+| `gke-crashloop` | Grounded CrashLoopBackOff troubleshooting with retrieved evidence |
+| `rag-groundedness` | RAG troubleshooting retrieves `rag-quality` |
+| `guardrail-no-evidence` | Out-of-scope question receives the intended refusal |
 
-Search/chart these custom metrics:
+For the current four-case suite, the expected aggregate result is:
 
 ```text
-agent.request.count
-agent.error.count
-agent.workflow.success.count
-agent.request.duration
-rag.retrieval.duration
-rag.retrieval.quality
-agent.groundedness.score
-agent.answer_relevance.score
-agent.hallucination.risk
+SUMMARY {"total": 4, "passed": 4, "failed": 0}
+Golden evaluation exit code: 0
 ```
 
-For traces, explain the hierarchy:
+Also inspect the details. A passing aggregate alone does not establish that the correct evidence or evaluator branch was used.
 
-```text
-http POST /ask
-└── agent.request
-    ├── agent.execute
-    │   └── rag.retrieve
-    └── evaluation.rag_quality
+Confirm the exact scope refusal uses `refusal-rule` on the deployed release. Do not lower thresholds merely to make a failing run pass.
+
+### Connection troubleshooting
+
+If requests fail with connection refused:
+
+1. Confirm the backend port-forward is still running.
+2. Confirm `AGENT_URL` uses the forwarded port.
+3. Inspect the saved log's `ERROR` lines.
+4. Confirm backend Deployment health.
+
+Connection failures do not measure answer quality.
+
+## Verify the React Demonstration
+
+| Scenario | Check |
+|---|---|
+| Cloud Run latency | Grounded answer and retrieved evidence |
+| GKE CrashLoopBackOff | Grounded answer and retrieved evidence |
+| RAG groundedness | Uses `rag-quality` rather than refusing |
+| Restricted claims question as SRE | Intended authorized evidence is present |
+| Same question as viewer | No restricted evidence or disclosure |
+| Office-lease question | Scope refusal without an invented amount |
+
+For the viewer scenario, inspect both document references and response text. A refusal label alone is insufficient.
+
+## Verify Dynatrace Evidence
+
+1. Run a fresh request through React or the golden evaluator.
+2. Copy the returned trace ID.
+3. Find the matching trace in Dynatrace.
+4. Inspect the backend workflow and retrieval operations.
+5. Check document IDs, role attributes, guardrail decisions, and evaluation signals where emitted.
+6. Capture sanitized demonstration evidence.
+
+Only describe spans and attributes that are actually visible. Console output and response trace IDs do not independently prove Dynatrace ingestion.
+
+## Check the Evaluation CronJob
+
+A saved CronJob manifest does not prove that a schedule is enabled or aligned in the cluster.
+
+Inspect the live resource without creating it:
+
+```bash
+kubectl -n sre-agent get cronjob golden-eval --ignore-not-found \
+  -o jsonpath='{.metadata.name}{"\n"}{range .spec.jobTemplate.spec.template.spec.containers[*]}{.name}{"\t"}{.image}{"\n"}{end}'
 ```
 
-# Critical interview statement
+If present, confirm its image is intentional and aligned with the intended evaluator release. Do not enable a schedule solely to complete a screen-share demonstration; recurring runs can incur usage charges.
 
-**Cloud Run and Dynatrace do not automatically calculate hallucination or groundedness.** The application evaluator calculates the quality scores from the question, retrieved context, and final answer; OpenTelemetry exports the resulting metrics and trace attributes to Dynatrace.
+## Release Workflow
 
-# GKE
+For backend runtime changes:
 
-The `k8s/` folder shows how the same container can run as a Kubernetes Deployment. For an interview discussion, explain that the application-level OpenTelemetry instrumentation remains valid, while GKE additionally allows Dynatrace Operator/application injection and Kubernetes-level monitoring.
+1. Run tests.
+2. Build a uniquely tagged image in the intended Artifact Registry repository.
+3. Update the intended backend container.
+4. Wait for rollout.
+5. Save the successful image reference in the deployment manifest.
+6. Align the evaluation image when applicable.
+7. Restart affected port-forwards if necessary.
+8. Run the golden evaluation against the deployed release.
+9. Verify React behavior and Dynatrace ingestion.
 
-# Security
+Review repository deployment scripts before executing them. A broad deployment can change more than the component being edited.
 
-- Never commit `.env`.
-- Never commit the Dynatrace token.
-- Store the Dynatrace token in Google Secret Manager for Cloud Run.
-- Do not attach raw sensitive prompts or retrieved customer content as telemetry attributes.
-- This sample only records safe IDs, timing, scores, and low-cardinality metadata.
+A README-only update does not require an application image rebuild or redeployment.
 
-# Useful demo prompts
+## Interview Demonstration Sequence
 
-Good evidence:
+1. Show active GKE workloads and the architecture.
+2. Open React through Cloud Shell Web Preview.
+3. Ask a grounded operational question.
+4. Show the answer, evidence, evaluation, and trace ID.
+5. Compare the restricted question as SRE and viewer.
+6. Demonstrate an out-of-scope refusal.
+7. Show the RAG-quality troubleshooting result.
+8. Open a matching live trace in Dynatrace.
+9. Show current unit-test and golden-evaluation results.
 
-```text
-Our Cloud Run API has high latency. How should I troubleshoot it?
+Explain the fictional data, caller-selected role limitation, evaluator limitations, and distinction between successful answering and safe abstention.
+
+## Final Verification Checklist
+
+- [ ] Current unit tests pass.
+- [ ] Golden evaluation passes against the deployed backend.
+- [ ] RAG case retrieves `rag-quality`.
+- [ ] Exact scope refusal uses `refusal-rule`.
+- [ ] Viewer response contains no restricted evidence or disclosure.
+- [ ] Matching live traces are visible in Dynatrace.
+- [ ] Backend, React, and collector are ready.
+- [ ] Saved image references match the intended release.
+- [ ] Live CronJob is checked if enabled.
+- [ ] README commands match the actual deployment.
+- [ ] No secrets or sensitive data are staged.
+- [ ] Local branch and remote are synchronized.
+
+## Review and Commit Documentation
+
+For a README-only change:
+
+```bash
+git diff --check
+git add README.md
+git --no-pager diff --cached
+git commit -m "Update README for React GKE screen-share demo"
+git push origin main
+git status -sb
 ```
 
-```text
-A GKE pod is in CrashLoopBackOff. What should I inspect first?
-```
-
-```text
-Our RAG groundedness score dropped. How should we troubleshoot retrieval versus generation?
-```
-
-Poor evidence / hallucination guardrail test:
-
-```text
-What is our company's 2027 Nashville office lease amount?
-```
-
-# Notes
-
-This demo uses an in-memory ADK session service, which is suitable for a personal demo. For a production system, use persistent session storage and production identity/access patterns.
+If the remote branch has changed, inspect and integrate both histories before pushing. Do not force-push simply to remove a synchronization warning.
