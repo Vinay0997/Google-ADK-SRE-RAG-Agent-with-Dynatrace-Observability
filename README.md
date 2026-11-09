@@ -4,7 +4,7 @@ A demonstration SRE assistant built with Google ADK, a React frontend, BigQuery-
 
 The assistant uses retrieved runbook evidence to answer operational questions, applies role-based document filtering, evaluates responses, and returns trace IDs.
 
-The application runs on Google Kubernetes Engine (GKE). The screen-share workflow uses Cloud Shell Web Preview; a public application URL is not required.
+The application runs on Google Kubernetes Engine (GKE). The workflow uses Cloud Shell Web Preview; a public application URL is not required.
 
 ## Architecture
 
