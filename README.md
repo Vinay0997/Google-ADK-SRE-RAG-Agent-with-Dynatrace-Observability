@@ -65,8 +65,7 @@ This is a historical snapshot, not a claim of current deployment state. Matching
 - Required BigQuery and Vertex AI permissions for retrieval.
 - Dynatrace access to verify telemetry.
 - Cloud Shell for the screen-share workflow.
-
-Never commit credentials, API tokens, service-account keys, or secret-bearing environment files.
+- 
 
 ## Verify Deployment Health
 
@@ -309,7 +308,7 @@ For a README-only change:
 git diff --check
 git add README.md
 git --no-pager diff --cached
-git commit -m "Update README for React GKE screen-share demo"
+git commit -m "Update README for React GKE demo"
 git push origin main
 git status -sb
 ```
