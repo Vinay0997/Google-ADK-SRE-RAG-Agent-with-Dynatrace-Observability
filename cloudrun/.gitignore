@@ -1,0 +1,13 @@
+# Generated manifest may contain preserved environment values.
+/backend.service.json
+
+# Local credentials and environment files.
+.env
+.env.*
+!.env.example
+
+# Generated files.
+__pycache__/
+*.pyc
+node_modules/
+dist/
