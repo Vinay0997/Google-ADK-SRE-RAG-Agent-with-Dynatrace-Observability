@@ -74,11 +74,15 @@ def slugify(name: str) -> str:
 
 
 def sql_string(value: str) -> str:
-    """Escape a Python string as a double-quoted BigQuery string literal.
+    """Escape a Python string as a triple-quoted BigQuery string literal.
 
-    Newlines are embedded literally; BigQuery string literals may span lines.
+    ZetaSQL single- or double-quoted literals may not contain raw newlines,
+    so multi-line document content uses triple-quoted literals. The corpus
+    is validated to contain no triple-quote sequences or backslashes.
     """
-    return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
+    if value.replace("\\", "") .replace('"', "") != value:
+        raise ValueError(f"Value contains characters unsupported in SQL literal: {value!r}")
+    return '"""' + value + '"""'
 
 
 def build_seed_sql(docs: list[dict]) -> str:
