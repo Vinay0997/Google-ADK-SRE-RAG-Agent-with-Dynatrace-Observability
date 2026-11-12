@@ -61,3 +61,22 @@ Explain that retrieval is weak and the agent should say the runbooks do not have
 Say:
 
 > The same container can run in GKE with the same OpenTelemetry application instrumentation. In GKE I can additionally deploy Dynatrace Operator / application injection for Kubernetes-level visibility into pods, namespaces, workloads, and service dependencies. Cloud Run is more managed, so for this demo I use application-level OpenTelemetry with direct OTLP/HTTP export.
+
+## Wrap-up — evaluation dashboard
+
+If time allows, show the ready-made **AI Evaluations and LLM-as-judge** dashboard
+and explain the two evaluation layers:
+
+> The golden suite I ran earlier is my deterministic regression layer — it
+> checks retrieval hit rate, reference facts, and that the Gemini judge
+> produced every score. This dashboard is the continuous-evaluation layer:
+> `dt-evals` reads the captured GenAI spans, scores them with an LLM judge,
+> and writes the results back to Dynatrace as bizevents, which populate these
+> KPIs.
+
+If the dashboard is empty, state it plainly and show the bizevents query from
+[DYNATRACE_VERIFICATION.md](DYNATRACE_VERIFICATION.md) to demonstrate you
+know exactly what feeds each tile — do not claim it is populated when it is
+not. Note that `dt-evals` and this dashboard are scheduled for retirement on
+January 1, 2027, so present it as a demonstration of the LLM-as-judge pattern
+rather than a permanent platform choice.

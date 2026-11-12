@@ -274,6 +274,12 @@ For the viewer scenario, inspect both document references and response text. A r
 
 Only describe spans and attributes that are actually visible. Console output and response trace IDs do not independently prove Dynatrace ingestion.
 
+Step-by-step instructions for every signal — metrics, span attributes, DQL
+Notebook queries, and populating the ready-made AI Evaluations and
+LLM-as-judge dashboard with `dt-evals` — are in
+[docs/DYNATRACE_VERIFICATION.md](docs/DYNATRACE_VERIFICATION.md). Setup and
+token scopes are in [docs/DYNATRACE_SETUP.md](docs/DYNATRACE_SETUP.md).
+
 ## Check the Evaluation CronJob
 
 A saved CronJob manifest does not prove that a schedule is enabled or aligned in the cluster.

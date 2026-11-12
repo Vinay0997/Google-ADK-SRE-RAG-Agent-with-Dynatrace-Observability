@@ -1,5 +1,9 @@
 # Dynatrace setup
 
+For how to verify every signal in the Dynatrace UI — metrics, traces, DQL
+queries, and the ready-made AI Evaluations dashboard — see
+[DYNATRACE_VERIFICATION.md](DYNATRACE_VERIFICATION.md).
+
 ## 1. Create a Dynatrace Classic access token
 For this repository you need:
 
