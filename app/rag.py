@@ -126,15 +126,92 @@ def _retrieve_bigquery(query: str, top_k: int, role: str) -> list[dict[str, Any]
 def _retrieve_lexical(
     query: str, top_k: int, role: str
 ) -> list[dict[str, Any]]:
+    settings = get_settings()
+    min_score = getattr(settings, "rag_min_score", 0.3)
     scored = []
     for doc in _load_runbooks():
         allowed_roles = doc.get("allowed_roles")
         if not isinstance(allowed_roles, list) or role not in allowed_roles:
             continue
         score = _score(query, doc)
+        if score < min_score:
+            continue
         scored.append({**doc, "score": round(score, 4), "backend": "lexical"})
     scored.sort(key=lambda item: item["score"], reverse=True)
     return scored[:top_k]
+
+
+# Retrieved runbook text is untrusted evidence. These patterns neutralize
+# instruction-like text aimed at the model so a poisoned document cannot
+# override the agent's rules or permissions. Filtering is defense in depth;
+# the agent instruction still tells the model to treat runbooks as data.
+_INJECTION_PATTERNS = [
+    re.compile(
+        r"ignore\s+(?:all\s+)?(?:previous|prior|above)\s+instructions", re.IGNORECASE
+    ),
+    re.compile(
+        r"disregard\s+(?:all\s+)?(?:the\s+)?(?:previous|prior|above)?\s*instructions",
+        re.IGNORECASE,
+    ),
+    re.compile(
+        r"(?:reveal|share|print|repeat)\s+(?:your\s+)?system\s+prompt", re.IGNORECASE
+    ),
+    re.compile(
+        r"you\s+are\s+now\s+(?:an?\s+)?(?:sre|admin|administrator|root)", re.IGNORECASE
+    ),
+    re.compile(
+        r"elevate\s+(?:your\s+|my\s+)?(?:role|access|permissions?)", re.IGNORECASE
+    ),
+    re.compile(
+        r"grant\s+(?:me|the\s+user)\s+\S+\s+(?:access|role|permissions?)",
+        re.IGNORECASE,
+    ),
+]
+_CONTROL_CHARS = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
+_SANITIZED_MARKER = "[filtered instruction-like text]"
+
+
+def _sanitize_content(text: str) -> str:
+    sanitized = _CONTROL_CHARS.sub("", text or "")
+    for pattern in _INJECTION_PATTERNS:
+        sanitized = pattern.sub(_SANITIZED_MARKER, sanitized)
+    return sanitized
+
+
+def _apply_context_guardrails(
+    matches: list[dict[str, Any]], settings: Any
+) -> list[dict[str, Any]]:
+    """Apply content sanitization and size limits to retrieved evidence."""
+    max_doc = getattr(settings, "rag_max_doc_chars", 4000)
+    max_total = getattr(settings, "rag_max_context_chars", 12000)
+    stats = {"sanitized_docs": 0, "truncated_docs": 0, "dropped_docs": 0}
+
+    cleaned: list[dict[str, Any]] = []
+    budget = max_total
+    for match in matches:
+        content = match.get("content") or ""
+        sanitized = _sanitize_content(content)
+        if sanitized != content:
+            stats["sanitized_docs"] += 1
+            content = sanitized
+        if len(content) > max_doc:
+            content = content[:max_doc]
+            stats["truncated_docs"] += 1
+        if len(content) > budget:
+            stats["dropped_docs"] += 1
+            continue
+        budget -= len(content)
+        cleaned.append({**match, "content": content})
+
+    if any(stats.values()):
+        logger.info("Retrieval guardrails applied: %s", stats)
+        with tracer.start_as_current_span("guardrail.retrieval_filter") as span:
+            span.set_attribute("guardrail.name", "retrieval_content")
+            span.set_attribute("guardrail.action", "filter")
+            for key, value in stats.items():
+                span.set_attribute(f"guardrail.{key}", value)
+
+    return cleaned
 
 
 def retrieve_runbooks(
@@ -144,14 +221,20 @@ def retrieve_runbooks(
     top_k = top_k or settings.top_k
     role = role if role in VALID_ROLES else CURRENT_ROLE.get()
 
+    matches: list[dict[str, Any]]
     if _flag("BQ_RAG_ENABLED"):
         try:
-            return _retrieve_bigquery(query, top_k, role)
+            matches = _retrieve_bigquery(query, top_k, role)
         except Exception:
             logger.exception("BigQuery retrieval failed")
             if not _flag("BQ_RAG_FALLBACK"):
-                return []
-    return _retrieve_lexical(query, top_k, role)
+                matches = []
+            else:
+                matches = _retrieve_lexical(query, top_k, role)
+    else:
+        matches = _retrieve_lexical(query, top_k, role)
+
+    return _apply_context_guardrails(matches, settings)
 
 
 def search_runbooks(query: str) -> dict[str, Any]:

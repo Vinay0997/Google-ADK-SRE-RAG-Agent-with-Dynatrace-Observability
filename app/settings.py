@@ -14,6 +14,11 @@ class Settings(BaseSettings):
     deployment_environment: str = "demo"
     top_k: int = 3
 
+    # Retrieval guardrails
+    rag_min_score: float = 0.3  # lexical relevance floor; weaker matches are dropped
+    rag_max_doc_chars: int = 4000  # per-document content cap sent to the model
+    rag_max_context_chars: int = 12000  # total retrieved-context cap sent to the model
+
     # Telemetry routing. Priority: collector (GKE) > direct Dynatrace > console.
     otel_collector_endpoint: str = ""
     dynatrace_otlp_endpoint: str = ""

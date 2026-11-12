@@ -111,6 +111,14 @@ Restart the port-forward if it exits or the selected pod is replaced.
 
 The demonstration uses BigQuery-backed retrieval and role-filtered runbook evidence.
 
+Retrieval guardrails are enforced in application code, not left to the model:
+
+- Role filtering is fail-closed for both backends; documents without valid `allowed_roles` are never returned.
+- A minimum relevance score (`RAG_MIN_SCORE`, default 0.3) drops weak lexical matches so irrelevant evidence cannot reach the model.
+- Retrieved content is sanitized: instruction-like text aimed at the model (for example, "ignore previous instructions") is neutralized before it enters the context.
+- Context size is capped per document (`RAG_MAX_DOC_CHARS`, default 4000) and in total (`RAG_MAX_CONTEXT_CHARS`, default 12000).
+- The search tool allows one retrieval call per request; further calls are blocked.
+
 Review the actual code and deployment configuration before changing retrieval settings, similarity thresholds, fallback behavior, or document permissions.
 
 ### Scope refusal
