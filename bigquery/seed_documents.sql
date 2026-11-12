@@ -7,52 +7,52 @@
 
 DELETE FROM `adk-dynatrace-observability.agent_observability.runbook_chunks`
 WHERE doc_id NOT IN (
-  "api-development-standards",
-  "acceptable-use-policy",
-  "access-control-policy",
-  "anti-harassment-policy",
-  "business-continuity-plan",
-  "ci-cd-guidelines",
-  "code-of-conduct",
-  "compliance-governance-model",
-  "data-flow-overview",
-  "data-processing-overview",
-  "data-retention-policy",
-  "disaster-recovery-runbook",
-  "employee-handbook",
-  "employee-nda",
-  "enterprise-risk-register",
-  "escalation-matrix",
-  "information-security-policy",
-  "internal-audit-process",
-  "internal-ip-policy",
-  "leave-and-attendance-policy",
-  "logging-standards",
-  "logging-and-monitoring-policy",
-  "metrics-and-reporting-framework",
-  "operational-kpis",
-  "password-and-mfa-policy",
-  "performance-review-process",
-  "policy-exception-process",
-  "raci-matrix",
-  "records-management-statement",
-  "remote-work-policy",
-  "risk-assessment-methodology",
-  "sop-backup-and-recovery",
-  "sop-change-management",
-  "sop-data-access-approval",
-  "sop-employee-offboarding",
-  "sop-employee-onboarding",
-  "sop-it-incident-response",
-  "sop-release-management",
-  "sop-vendor-onboarding",
-  "security-awareness-training",
-  "system-architecture-overview",
-  "third-party-risk-management",
-  "threat-modeling-overview",
-  "vendor-confidentiality-terms",
-  "vulnerability-management-process",
-  "workplace-safety-policy"
+  """api-development-standards""",
+  """acceptable-use-policy""",
+  """access-control-policy""",
+  """anti-harassment-policy""",
+  """business-continuity-plan""",
+  """ci-cd-guidelines""",
+  """code-of-conduct""",
+  """compliance-governance-model""",
+  """data-flow-overview""",
+  """data-processing-overview""",
+  """data-retention-policy""",
+  """disaster-recovery-runbook""",
+  """employee-handbook""",
+  """employee-nda""",
+  """enterprise-risk-register""",
+  """escalation-matrix""",
+  """information-security-policy""",
+  """internal-audit-process""",
+  """internal-ip-policy""",
+  """leave-and-attendance-policy""",
+  """logging-standards""",
+  """logging-and-monitoring-policy""",
+  """metrics-and-reporting-framework""",
+  """operational-kpis""",
+  """password-and-mfa-policy""",
+  """performance-review-process""",
+  """policy-exception-process""",
+  """raci-matrix""",
+  """records-management-statement""",
+  """remote-work-policy""",
+  """risk-assessment-methodology""",
+  """sop-backup-and-recovery""",
+  """sop-change-management""",
+  """sop-data-access-approval""",
+  """sop-employee-offboarding""",
+  """sop-employee-onboarding""",
+  """sop-it-incident-response""",
+  """sop-release-management""",
+  """sop-vendor-onboarding""",
+  """security-awareness-training""",
+  """system-architecture-overview""",
+  """third-party-risk-management""",
+  """threat-modeling-overview""",
+  """vendor-confidentiality-terms""",
+  """vulnerability-management-process""",
+  """workplace-safety-policy"""
 );
 
 CREATE TEMP TABLE generated_documents AS
@@ -61,9 +61,9 @@ FROM AI.GENERATE_EMBEDDING(
   MODEL `adk-dynatrace-observability.agent_observability.embedding_model`,
   (
     SELECT
-      "api-development-standards" AS doc_id,
-      "API Development Standards" AS title,
-      "# API Development Standards
+      """api-development-standards""" AS doc_id,
+      """API Development Standards""" AS title,
+      """# API Development Standards
 
 **Company:** Aurelius Health Systems  
 **Document Type:** ENGINEERING  
@@ -92,15 +92,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "engineering" AS category,
-      "documents/Markdown/API_Development_Standards.md" AS source,
-      ["sre"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """engineering""" AS category,
+      """documents/Markdown/API_Development_Standards.md""" AS source,
+      ["""sre"""] AS allowed_roles
     UNION ALL
     SELECT
-      "acceptable-use-policy" AS doc_id,
-      "Acceptable Use Policy" AS title,
-      "# Acceptable Use Policy
+      """acceptable-use-policy""" AS doc_id,
+      """Acceptable Use Policy""" AS title,
+      """# Acceptable Use Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** POLICIES  
@@ -129,15 +129,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "policies" AS category,
-      "documents/Markdown/Acceptable_Use_Policy.md" AS source,
-      ["viewer", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """policies""" AS category,
+      """documents/Markdown/Acceptable_Use_Policy.md""" AS source,
+      ["""viewer""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "access-control-policy" AS doc_id,
-      "Access Control Policy" AS title,
-      "# Access Control Policy
+      """access-control-policy""" AS doc_id,
+      """Access Control Policy""" AS title,
+      """# Access Control Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** POLICIES  
@@ -166,15 +166,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "policies" AS category,
-      "documents/Markdown/Access_Control_Policy.md" AS source,
-      ["sre", "security_privacy", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """policies""" AS category,
+      """documents/Markdown/Access_Control_Policy.md""" AS source,
+      ["""sre""", """security_privacy""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "anti-harassment-policy" AS doc_id,
-      "Anti Harassment Policy" AS title,
-      "# Anti Harassment Policy
+      """anti-harassment-policy""" AS doc_id,
+      """Anti Harassment Policy""" AS title,
+      """# Anti Harassment Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** HR  
@@ -203,15 +203,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "hr" AS category,
-      "documents/Markdown/Anti_Harassment_Policy.md" AS source,
-      ["viewer"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """hr""" AS category,
+      """documents/Markdown/Anti_Harassment_Policy.md""" AS source,
+      ["""viewer"""] AS allowed_roles
     UNION ALL
     SELECT
-      "business-continuity-plan" AS doc_id,
-      "Business Continuity Plan" AS title,
-      "# Business Continuity Plan
+      """business-continuity-plan""" AS doc_id,
+      """Business Continuity Plan""" AS title,
+      """# Business Continuity Plan
 
 **Company:** Aurelius Health Systems  
 **Document Type:** OPERATIONS  
@@ -240,15 +240,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "operations" AS category,
-      "documents/Markdown/Business_Continuity_Plan.md" AS source,
-      ["viewer", "sre", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """operations""" AS category,
+      """documents/Markdown/Business_Continuity_Plan.md""" AS source,
+      ["""viewer""", """sre""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "ci-cd-guidelines" AS doc_id,
-      "CI CD Guidelines" AS title,
-      "# CI CD Guidelines
+      """ci-cd-guidelines""" AS doc_id,
+      """CI CD Guidelines""" AS title,
+      """# CI CD Guidelines
 
 **Company:** Aurelius Health Systems  
 **Document Type:** ENGINEERING  
@@ -277,15 +277,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "engineering" AS category,
-      "documents/Markdown/CI_CD_Guidelines.md" AS source,
-      ["sre"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """engineering""" AS category,
+      """documents/Markdown/CI_CD_Guidelines.md""" AS source,
+      ["""sre"""] AS allowed_roles
     UNION ALL
     SELECT
-      "code-of-conduct" AS doc_id,
-      "Code of Conduct" AS title,
-      "# Code of Conduct
+      """code-of-conduct""" AS doc_id,
+      """Code of Conduct""" AS title,
+      """# Code of Conduct
 
 **Company:** Aurelius Health Systems  
 **Document Type:** HR  
@@ -314,15 +314,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "hr" AS category,
-      "documents/Markdown/Code_of_Conduct.md" AS source,
-      ["viewer"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """hr""" AS category,
+      """documents/Markdown/Code_of_Conduct.md""" AS source,
+      ["""viewer"""] AS allowed_roles
     UNION ALL
     SELECT
-      "compliance-governance-model" AS doc_id,
-      "Compliance Governance Model" AS title,
-      "# Compliance Governance Model
+      """compliance-governance-model""" AS doc_id,
+      """Compliance Governance Model""" AS title,
+      """# Compliance Governance Model
 
 **Company:** Aurelius Health Systems  
 **Document Type:** RISK_GOVERNANCE  
@@ -351,15 +351,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "risk_governance" AS category,
-      "documents/Markdown/Compliance_Governance_Model.md" AS source,
-      ["compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """risk_governance""" AS category,
+      """documents/Markdown/Compliance_Governance_Model.md""" AS source,
+      ["""compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "data-flow-overview" AS doc_id,
-      "Data Flow Overview" AS title,
-      "# Data Flow Overview
+      """data-flow-overview""" AS doc_id,
+      """Data Flow Overview""" AS title,
+      """# Data Flow Overview
 
 **Company:** Aurelius Health Systems  
 **Document Type:** ENGINEERING  
@@ -388,15 +388,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "engineering" AS category,
-      "documents/Markdown/Data_Flow_Overview.md" AS source,
-      ["sre", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """engineering""" AS category,
+      """documents/Markdown/Data_Flow_Overview.md""" AS source,
+      ["""sre""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "data-processing-overview" AS doc_id,
-      "Data Processing Overview" AS title,
-      "# Data Processing Overview
+      """data-processing-overview""" AS doc_id,
+      """Data Processing Overview""" AS title,
+      """# Data Processing Overview
 
 **Company:** Aurelius Health Systems  
 **Document Type:** LEGAL_INTERNAL  
@@ -425,15 +425,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "legal_internal" AS category,
-      "documents/Markdown/Data_Processing_Overview.md" AS source,
-      ["security_privacy", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """legal_internal""" AS category,
+      """documents/Markdown/Data_Processing_Overview.md""" AS source,
+      ["""security_privacy""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "data-retention-policy" AS doc_id,
-      "Data Retention Policy" AS title,
-      "# Data Retention Policy
+      """data-retention-policy""" AS doc_id,
+      """Data Retention Policy""" AS title,
+      """# Data Retention Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** POLICIES  
@@ -462,15 +462,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "policies" AS category,
-      "documents/Markdown/Data_Retention_Policy.md" AS source,
-      ["viewer", "security_privacy", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """policies""" AS category,
+      """documents/Markdown/Data_Retention_Policy.md""" AS source,
+      ["""viewer""", """security_privacy""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "disaster-recovery-runbook" AS doc_id,
-      "Disaster Recovery Runbook" AS title,
-      "# Disaster Recovery Runbook
+      """disaster-recovery-runbook""" AS doc_id,
+      """Disaster Recovery Runbook""" AS title,
+      """# Disaster Recovery Runbook
 
 **Company:** Aurelius Health Systems  
 **Document Type:** OPERATIONS  
@@ -499,15 +499,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "operations" AS category,
-      "documents/Markdown/Disaster_Recovery_Runbook.md" AS source,
-      ["sre", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """operations""" AS category,
+      """documents/Markdown/Disaster_Recovery_Runbook.md""" AS source,
+      ["""sre""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "employee-handbook" AS doc_id,
-      "Employee Handbook" AS title,
-      "# Employee Handbook
+      """employee-handbook""" AS doc_id,
+      """Employee Handbook""" AS title,
+      """# Employee Handbook
 
 **Company:** Aurelius Health Systems  
 **Document Type:** HR  
@@ -536,15 +536,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "hr" AS category,
-      "documents/Markdown/Employee_Handbook.md" AS source,
-      ["viewer"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """hr""" AS category,
+      """documents/Markdown/Employee_Handbook.md""" AS source,
+      ["""viewer"""] AS allowed_roles
     UNION ALL
     SELECT
-      "employee-nda" AS doc_id,
-      "Employee NDA" AS title,
-      "# Employee NDA
+      """employee-nda""" AS doc_id,
+      """Employee NDA""" AS title,
+      """# Employee NDA
 
 **Company:** Aurelius Health Systems  
 **Document Type:** LEGAL_INTERNAL  
@@ -573,15 +573,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "legal_internal" AS category,
-      "documents/Markdown/Employee_NDA.md" AS source,
-      ["viewer", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """legal_internal""" AS category,
+      """documents/Markdown/Employee_NDA.md""" AS source,
+      ["""viewer""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "enterprise-risk-register" AS doc_id,
-      "Enterprise Risk Register" AS title,
-      "# Enterprise Risk Register
+      """enterprise-risk-register""" AS doc_id,
+      """Enterprise Risk Register""" AS title,
+      """# Enterprise Risk Register
 
 **Company:** Aurelius Health Systems  
 **Document Type:** RISK_GOVERNANCE  
@@ -610,15 +610,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "risk_governance" AS category,
-      "documents/Markdown/Enterprise_Risk_Register.md" AS source,
-      ["compliance", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """risk_governance""" AS category,
+      """documents/Markdown/Enterprise_Risk_Register.md""" AS source,
+      ["""compliance""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "escalation-matrix" AS doc_id,
-      "Escalation Matrix" AS title,
-      "# Escalation Matrix
+      """escalation-matrix""" AS doc_id,
+      """Escalation Matrix""" AS title,
+      """# Escalation Matrix
 
 **Company:** Aurelius Health Systems  
 **Document Type:** OPERATIONS  
@@ -647,15 +647,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "operations" AS category,
-      "documents/Markdown/Escalation_Matrix.md" AS source,
-      ["viewer", "sre", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """operations""" AS category,
+      """documents/Markdown/Escalation_Matrix.md""" AS source,
+      ["""viewer""", """sre""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "information-security-policy" AS doc_id,
-      "Information Security Policy" AS title,
-      "# Information Security Policy
+      """information-security-policy""" AS doc_id,
+      """Information Security Policy""" AS title,
+      """# Information Security Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** POLICIES  
@@ -684,15 +684,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "policies" AS category,
-      "documents/Markdown/Information_Security_Policy.md" AS source,
-      ["sre", "security_privacy", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """policies""" AS category,
+      """documents/Markdown/Information_Security_Policy.md""" AS source,
+      ["""sre""", """security_privacy""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "internal-audit-process" AS doc_id,
-      "Internal Audit Process" AS title,
-      "# Internal Audit Process
+      """internal-audit-process""" AS doc_id,
+      """Internal Audit Process""" AS title,
+      """# Internal Audit Process
 
 **Company:** Aurelius Health Systems  
 **Document Type:** RISK_GOVERNANCE  
@@ -721,15 +721,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "risk_governance" AS category,
-      "documents/Markdown/Internal_Audit_Process.md" AS source,
-      ["compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """risk_governance""" AS category,
+      """documents/Markdown/Internal_Audit_Process.md""" AS source,
+      ["""compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "internal-ip-policy" AS doc_id,
-      "Internal IP Policy" AS title,
-      "# Internal IP Policy
+      """internal-ip-policy""" AS doc_id,
+      """Internal IP Policy""" AS title,
+      """# Internal IP Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** LEGAL_INTERNAL  
@@ -758,15 +758,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "legal_internal" AS category,
-      "documents/Markdown/Internal_IP_Policy.md" AS source,
-      ["security_privacy", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """legal_internal""" AS category,
+      """documents/Markdown/Internal_IP_Policy.md""" AS source,
+      ["""security_privacy""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "leave-and-attendance-policy" AS doc_id,
-      "Leave and Attendance Policy" AS title,
-      "# Leave and Attendance Policy
+      """leave-and-attendance-policy""" AS doc_id,
+      """Leave and Attendance Policy""" AS title,
+      """# Leave and Attendance Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** HR  
@@ -795,15 +795,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "hr" AS category,
-      "documents/Markdown/Leave_and_Attendance_Policy.md" AS source,
-      ["viewer"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """hr""" AS category,
+      """documents/Markdown/Leave_and_Attendance_Policy.md""" AS source,
+      ["""viewer"""] AS allowed_roles
     UNION ALL
     SELECT
-      "logging-standards" AS doc_id,
-      "Logging Standards" AS title,
-      "# Logging Standards
+      """logging-standards""" AS doc_id,
+      """Logging Standards""" AS title,
+      """# Logging Standards
 
 **Company:** Aurelius Health Systems  
 **Document Type:** ENGINEERING  
@@ -832,15 +832,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "engineering" AS category,
-      "documents/Markdown/Logging_Standards.md" AS source,
-      ["sre", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """engineering""" AS category,
+      """documents/Markdown/Logging_Standards.md""" AS source,
+      ["""sre""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "logging-and-monitoring-policy" AS doc_id,
-      "Logging and Monitoring Policy" AS title,
-      "# Logging and Monitoring Policy
+      """logging-and-monitoring-policy""" AS doc_id,
+      """Logging and Monitoring Policy""" AS title,
+      """# Logging and Monitoring Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** POLICIES  
@@ -869,15 +869,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "policies" AS category,
-      "documents/Markdown/Logging_and_Monitoring_Policy.md" AS source,
-      ["viewer", "sre", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """policies""" AS category,
+      """documents/Markdown/Logging_and_Monitoring_Policy.md""" AS source,
+      ["""viewer""", """sre""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "metrics-and-reporting-framework" AS doc_id,
-      "Metrics and Reporting Framework" AS title,
-      "# Metrics and Reporting Framework
+      """metrics-and-reporting-framework""" AS doc_id,
+      """Metrics and Reporting Framework""" AS title,
+      """# Metrics and Reporting Framework
 
 **Company:** Aurelius Health Systems  
 **Document Type:** RISK_GOVERNANCE  
@@ -906,15 +906,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "risk_governance" AS category,
-      "documents/Markdown/Metrics_and_Reporting_Framework.md" AS source,
-      ["viewer", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """risk_governance""" AS category,
+      """documents/Markdown/Metrics_and_Reporting_Framework.md""" AS source,
+      ["""viewer""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "operational-kpis" AS doc_id,
-      "Operational KPIs" AS title,
-      "# Operational KPIs
+      """operational-kpis""" AS doc_id,
+      """Operational KPIs""" AS title,
+      """# Operational KPIs
 
 **Company:** Aurelius Health Systems  
 **Document Type:** OPERATIONS  
@@ -943,15 +943,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "operations" AS category,
-      "documents/Markdown/Operational_KPIs.md" AS source,
-      ["viewer", "sre"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """operations""" AS category,
+      """documents/Markdown/Operational_KPIs.md""" AS source,
+      ["""viewer""", """sre"""] AS allowed_roles
     UNION ALL
     SELECT
-      "password-and-mfa-policy" AS doc_id,
-      "Password and MFA Policy" AS title,
-      "# Password and MFA Policy
+      """password-and-mfa-policy""" AS doc_id,
+      """Password and MFA Policy""" AS title,
+      """# Password and MFA Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** POLICIES  
@@ -980,15 +980,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "policies" AS category,
-      "documents/Markdown/Password_and_MFA_Policy.md" AS source,
-      ["viewer", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """policies""" AS category,
+      """documents/Markdown/Password_and_MFA_Policy.md""" AS source,
+      ["""viewer""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "performance-review-process" AS doc_id,
-      "Performance Review Process" AS title,
-      "# Performance Review Process
+      """performance-review-process""" AS doc_id,
+      """Performance Review Process""" AS title,
+      """# Performance Review Process
 
 **Company:** Aurelius Health Systems  
 **Document Type:** HR  
@@ -1017,15 +1017,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "hr" AS category,
-      "documents/Markdown/Performance_Review_Process.md" AS source,
-      ["viewer"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """hr""" AS category,
+      """documents/Markdown/Performance_Review_Process.md""" AS source,
+      ["""viewer"""] AS allowed_roles
     UNION ALL
     SELECT
-      "policy-exception-process" AS doc_id,
-      "Policy Exception Process" AS title,
-      "# Policy Exception Process
+      """policy-exception-process""" AS doc_id,
+      """Policy Exception Process""" AS title,
+      """# Policy Exception Process
 
 **Company:** Aurelius Health Systems  
 **Document Type:** RISK_GOVERNANCE  
@@ -1054,15 +1054,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "risk_governance" AS category,
-      "documents/Markdown/Policy_Exception_Process.md" AS source,
-      ["compliance", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """risk_governance""" AS category,
+      """documents/Markdown/Policy_Exception_Process.md""" AS source,
+      ["""compliance""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "raci-matrix" AS doc_id,
-      "RACI Matrix" AS title,
-      "# RACI Matrix
+      """raci-matrix""" AS doc_id,
+      """RACI Matrix""" AS title,
+      """# RACI Matrix
 
 **Company:** Aurelius Health Systems  
 **Document Type:** OPERATIONS  
@@ -1091,15 +1091,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "operations" AS category,
-      "documents/Markdown/RACI_Matrix.md" AS source,
-      ["viewer", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """operations""" AS category,
+      """documents/Markdown/RACI_Matrix.md""" AS source,
+      ["""viewer""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "records-management-statement" AS doc_id,
-      "Records Management Statement" AS title,
-      "# Records Management Statement
+      """records-management-statement""" AS doc_id,
+      """Records Management Statement""" AS title,
+      """# Records Management Statement
 
 **Company:** Aurelius Health Systems  
 **Document Type:** LEGAL_INTERNAL  
@@ -1128,15 +1128,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "legal_internal" AS category,
-      "documents/Markdown/Records_Management_Statement.md" AS source,
-      ["viewer", "compliance", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """legal_internal""" AS category,
+      """documents/Markdown/Records_Management_Statement.md""" AS source,
+      ["""viewer""", """compliance""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "remote-work-policy" AS doc_id,
-      "Remote Work Policy" AS title,
-      "# Remote Work Policy
+      """remote-work-policy""" AS doc_id,
+      """Remote Work Policy""" AS title,
+      """# Remote Work Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** POLICIES  
@@ -1165,15 +1165,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "policies" AS category,
-      "documents/Markdown/Remote_Work_Policy.md" AS source,
-      ["viewer", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """policies""" AS category,
+      """documents/Markdown/Remote_Work_Policy.md""" AS source,
+      ["""viewer""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "risk-assessment-methodology" AS doc_id,
-      "Risk Assessment Methodology" AS title,
-      "# Risk Assessment Methodology
+      """risk-assessment-methodology""" AS doc_id,
+      """Risk Assessment Methodology""" AS title,
+      """# Risk Assessment Methodology
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SECURITY  
@@ -1202,15 +1202,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "security" AS category,
-      "documents/Markdown/Risk_Assessment_Methodology.md" AS source,
-      ["viewer", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """security""" AS category,
+      """documents/Markdown/Risk_Assessment_Methodology.md""" AS source,
+      ["""viewer""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-backup-and-recovery" AS doc_id,
-      "SOP Backup and Recovery" AS title,
-      "# SOP Backup and Recovery
+      """sop-backup-and-recovery""" AS doc_id,
+      """SOP Backup and Recovery""" AS title,
+      """# SOP Backup and Recovery
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1239,15 +1239,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_Backup_and_Recovery.md" AS source,
-      ["viewer", "sre"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_Backup_and_Recovery.md""" AS source,
+      ["""viewer""", """sre"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-change-management" AS doc_id,
-      "SOP Change Management" AS title,
-      "# SOP Change Management
+      """sop-change-management""" AS doc_id,
+      """SOP Change Management""" AS title,
+      """# SOP Change Management
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1276,15 +1276,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_Change_Management.md" AS source,
-      ["viewer", "sre", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_Change_Management.md""" AS source,
+      ["""viewer""", """sre""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-data-access-approval" AS doc_id,
-      "SOP Data Access Approval" AS title,
-      "# SOP Data Access Approval
+      """sop-data-access-approval""" AS doc_id,
+      """SOP Data Access Approval""" AS title,
+      """# SOP Data Access Approval
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1313,15 +1313,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_Data_Access_Approval.md" AS source,
-      ["viewer", "security_privacy", "compliance"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_Data_Access_Approval.md""" AS source,
+      ["""viewer""", """security_privacy""", """compliance"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-employee-offboarding" AS doc_id,
-      "SOP Employee Offboarding" AS title,
-      "# SOP Employee Offboarding
+      """sop-employee-offboarding""" AS doc_id,
+      """SOP Employee Offboarding""" AS title,
+      """# SOP Employee Offboarding
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1350,15 +1350,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_Employee_Offboarding.md" AS source,
-      ["viewer", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_Employee_Offboarding.md""" AS source,
+      ["""viewer""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-employee-onboarding" AS doc_id,
-      "SOP Employee Onboarding" AS title,
-      "# SOP Employee Onboarding
+      """sop-employee-onboarding""" AS doc_id,
+      """SOP Employee Onboarding""" AS title,
+      """# SOP Employee Onboarding
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1387,15 +1387,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_Employee_Onboarding.md" AS source,
-      ["viewer"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_Employee_Onboarding.md""" AS source,
+      ["""viewer"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-it-incident-response" AS doc_id,
-      "SOP IT Incident Response" AS title,
-      "# SOP IT Incident Response
+      """sop-it-incident-response""" AS doc_id,
+      """SOP IT Incident Response""" AS title,
+      """# SOP IT Incident Response
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1424,15 +1424,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_IT_Incident_Response.md" AS source,
-      ["viewer", "sre", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_IT_Incident_Response.md""" AS source,
+      ["""viewer""", """sre""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-release-management" AS doc_id,
-      "SOP Release Management" AS title,
-      "# SOP Release Management
+      """sop-release-management""" AS doc_id,
+      """SOP Release Management""" AS title,
+      """# SOP Release Management
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1461,15 +1461,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_Release_Management.md" AS source,
-      ["viewer", "sre"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_Release_Management.md""" AS source,
+      ["""viewer""", """sre"""] AS allowed_roles
     UNION ALL
     SELECT
-      "sop-vendor-onboarding" AS doc_id,
-      "SOP Vendor Onboarding" AS title,
-      "# SOP Vendor Onboarding
+      """sop-vendor-onboarding""" AS doc_id,
+      """SOP Vendor Onboarding""" AS title,
+      """# SOP Vendor Onboarding
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SOP  
@@ -1498,15 +1498,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "sop" AS category,
-      "documents/Markdown/SOP_Vendor_Onboarding.md" AS source,
-      ["compliance", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """sop""" AS category,
+      """documents/Markdown/SOP_Vendor_Onboarding.md""" AS source,
+      ["""compliance""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "security-awareness-training" AS doc_id,
-      "Security Awareness Training" AS title,
-      "# Security Awareness Training
+      """security-awareness-training""" AS doc_id,
+      """Security Awareness Training""" AS title,
+      """# Security Awareness Training
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SECURITY  
@@ -1535,15 +1535,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "security" AS category,
-      "documents/Markdown/Security_Awareness_Training.md" AS source,
-      ["viewer", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """security""" AS category,
+      """documents/Markdown/Security_Awareness_Training.md""" AS source,
+      ["""viewer""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "system-architecture-overview" AS doc_id,
-      "System Architecture Overview" AS title,
-      "# System Architecture Overview
+      """system-architecture-overview""" AS doc_id,
+      """System Architecture Overview""" AS title,
+      """# System Architecture Overview
 
 **Company:** Aurelius Health Systems  
 **Document Type:** ENGINEERING  
@@ -1572,15 +1572,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "engineering" AS category,
-      "documents/Markdown/System_Architecture_Overview.md" AS source,
-      ["viewer", "sre", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """engineering""" AS category,
+      """documents/Markdown/System_Architecture_Overview.md""" AS source,
+      ["""viewer""", """sre""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "third-party-risk-management" AS doc_id,
-      "Third Party Risk Management" AS title,
-      "# Third Party Risk Management
+      """third-party-risk-management""" AS doc_id,
+      """Third Party Risk Management""" AS title,
+      """# Third Party Risk Management
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SECURITY  
@@ -1609,15 +1609,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "security" AS category,
-      "documents/Markdown/Third_Party_Risk_Management.md" AS source,
-      ["compliance", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """security""" AS category,
+      """documents/Markdown/Third_Party_Risk_Management.md""" AS source,
+      ["""compliance""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "threat-modeling-overview" AS doc_id,
-      "Threat Modeling Overview" AS title,
-      "# Threat Modeling Overview
+      """threat-modeling-overview""" AS doc_id,
+      """Threat Modeling Overview""" AS title,
+      """# Threat Modeling Overview
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SECURITY  
@@ -1646,15 +1646,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "security" AS category,
-      "documents/Markdown/Threat_Modeling_Overview.md" AS source,
-      ["sre", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """security""" AS category,
+      """documents/Markdown/Threat_Modeling_Overview.md""" AS source,
+      ["""sre""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "vendor-confidentiality-terms" AS doc_id,
-      "Vendor Confidentiality Terms" AS title,
-      "# Vendor Confidentiality Terms
+      """vendor-confidentiality-terms""" AS doc_id,
+      """Vendor Confidentiality Terms""" AS title,
+      """# Vendor Confidentiality Terms
 
 **Company:** Aurelius Health Systems  
 **Document Type:** LEGAL_INTERNAL  
@@ -1683,15 +1683,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "legal_internal" AS category,
-      "documents/Markdown/Vendor_Confidentiality_Terms.md" AS source,
-      ["compliance", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """legal_internal""" AS category,
+      """documents/Markdown/Vendor_Confidentiality_Terms.md""" AS source,
+      ["""compliance""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "vulnerability-management-process" AS doc_id,
-      "Vulnerability Management Process" AS title,
-      "# Vulnerability Management Process
+      """vulnerability-management-process""" AS doc_id,
+      """Vulnerability Management Process""" AS title,
+      """# Vulnerability Management Process
 
 **Company:** Aurelius Health Systems  
 **Document Type:** SECURITY  
@@ -1720,15 +1720,15 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "security" AS category,
-      "documents/Markdown/Vulnerability_Management_Process.md" AS source,
-      ["sre", "security_privacy"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """security""" AS category,
+      """documents/Markdown/Vulnerability_Management_Process.md""" AS source,
+      ["""sre""", """security_privacy"""] AS allowed_roles
     UNION ALL
     SELECT
-      "workplace-safety-policy" AS doc_id,
-      "Workplace Safety Policy" AS title,
-      "# Workplace Safety Policy
+      """workplace-safety-policy""" AS doc_id,
+      """Workplace Safety Policy""" AS title,
+      """# Workplace Safety Policy
 
 **Company:** Aurelius Health Systems  
 **Document Type:** HR  
@@ -1757,10 +1757,10 @@ Deviations must be documented and approved by management.
 Violations may result in disciplinary action up to and including termination.
 
 ## Review & Maintenance
-This document is reviewed at least annually or upon significant organizational or regulatory change." AS content,
-      "hr" AS category,
-      "documents/Markdown/Workplace_Safety_Policy.md" AS source,
-      ["viewer"] AS allowed_roles
+This document is reviewed at least annually or upon significant organizational or regulatory change.""" AS content,
+      """hr""" AS category,
+      """documents/Markdown/Workplace_Safety_Policy.md""" AS source,
+      ["""viewer"""] AS allowed_roles
   ),
   STRUCT(
     'RETRIEVAL_DOCUMENT' AS task_type,
