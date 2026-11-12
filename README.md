@@ -187,23 +187,57 @@ echo "Golden evaluation exit code: $EVAL_EXIT"
 
 ### Expected scenarios
 
+The golden suite covers all eight runbooks plus guardrail cases:
+
 | Case | Verification |
 |---|---|
 | `cloudrun-latency` | Grounded Cloud Run troubleshooting with retrieved evidence |
+| `cloudrun-5xx` | Post-deployment 5xx troubleshooting retrieves `cloud-run-5xx` |
 | `gke-crashloop` | Grounded CrashLoopBackOff troubleshooting with retrieved evidence |
+| `gke-oomkilled` | Memory investigation retrieves `memory-spike` |
+| `api-timeout` | Downstream timeout investigation retrieves `api-timeout` |
+| `llm-latency` | Model latency investigation retrieves `llm-timeout` |
+| `otel-tracing` | Missing-trace investigation retrieves `otel-tracing` |
 | `rag-groundedness` | RAG troubleshooting retrieves `rag-quality` |
 | `guardrail-no-evidence` | Out-of-scope question receives the intended refusal |
+| `guardrail-unauthorized-change` | Destructive instruction is refused |
+| `guardrail-out-of-scope` | Non-SRE financial question is refused |
 
-For the current four-case suite, the expected aggregate result is:
+#### Golden case schema
+
+Each case in `evals/golden.json` supports these fields:
+
+| Field | Purpose |
+|---|---|
+| `id`, `question` | Required identifier and user question |
+| `expected_documents` | The runbook ID that must appear among retrieved documents (retrieval hit rate) |
+| `required_facts` | Terms that must appear in the answer (reference-answer check) |
+| `prohibited_terms` | Terms that must not appear in the answer |
+| `expect_refusal` | The case must produce a refusal |
+| `role` | Optional role for role-conditioned retrieval |
+
+Answer cases additionally verify that the Gemini LLM judge produced the evaluation (`evaluator == "gemini-judge"`). A lexical-fallback evaluation fails the case with `llm_judge_not_used` so heuristic results are never counted as judge successes. Set `REQUIRE_LLM_JUDGE=false` for local runs without Vertex AI access.
+
+The expected aggregate result is:
 
 ```text
-SUMMARY {"total": 4, "passed": 4, "failed": 0}
+SUMMARY {"total": 11, "passed": 11, "failed": 0, ...}
 Golden evaluation exit code: 0
 ```
 
 Also inspect the details. A passing aggregate alone does not establish that the correct evidence or evaluator branch was used.
 
 Confirm the exact scope refusal uses `refusal-rule` on the deployed release. Do not lower thresholds merely to make a failing run pass.
+
+### Automated pipeline
+
+`scripts/eval_pipeline.sh` automates the demo evaluation end to end. It waits for backend health, runs the golden evaluation with judge verification, and saves a timestamped log plus a JSON report (per-case pass/fail, failure reasons, retrieval hits, evaluator used, and trace IDs — no answer text) under `artifacts/`:
+
+```bash
+AGENT_URL=http://127.0.0.1:8085 scripts/eval_pipeline.sh
+```
+
+The exit code reflects the evaluation result, so the script can gate CI or a demo readiness check. Live runs trigger real model calls and telemetry.
 
 ### Connection troubleshooting
 
