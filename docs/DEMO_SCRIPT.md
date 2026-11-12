@@ -55,7 +55,7 @@ Ask something unrelated to the knowledge base, for example:
 What is our company's 2027 Nashville office lease amount?
 ```
 
-Explain that retrieval is weak and the agent should say the runbooks do not have evidence instead of inventing a value.
+Explain that retrieval is weak and the agent should say the documents do not have evidence instead of inventing a value.
 
 ## 6:15-7:00 — GKE
 Say:

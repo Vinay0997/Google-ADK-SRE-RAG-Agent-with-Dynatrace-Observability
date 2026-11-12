@@ -97,7 +97,7 @@ ANSWER:
 
 
 _REFUSAL_RE = re.compile(
-    r"no runbook (available|covers|contains)|access level|do(es)? not contain enough evidence",
+    r"no (policy|document|runbook) (available|covers|contains)|access level|do(es)? not contain enough evidence",
     re.IGNORECASE,
 )
 
@@ -123,7 +123,7 @@ async def evaluate_response(question: str, answer: str, contexts: list[dict]) ->
             if (
                 not contexts
                 and answer.strip()
-                == "I can only answer SRE troubleshooting questions based on the runbooks."
+                == "I can only answer questions based on the documented policies and procedures."
             ):
                 result = EvaluationResult(
                     groundedness=1.0,

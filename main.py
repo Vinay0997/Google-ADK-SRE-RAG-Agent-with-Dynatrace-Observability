@@ -48,9 +48,9 @@ runner = Runner(
 )
 
 api = FastAPI(
-    title="Google ADK SRE RAG Agent - Dynatrace Observability",
-    version="1.1.0",
-    description="ADK + GKE + OpenTelemetry Collector + Dynatrace AI Observability + BigQuery audit sink.",
+    title="Google ADK Policy RAG Agent - Dynatrace Observability",
+    version="1.2.0",
+    description="ADK + GKE + OpenTelemetry Collector + Dynatrace AI Observability + BigQuery audit sink, grounded in company policy documents.",
 )
 
 

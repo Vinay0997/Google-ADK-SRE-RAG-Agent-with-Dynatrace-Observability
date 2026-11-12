@@ -37,6 +37,8 @@ REFUSAL_HINTS = (
     "unavailable",
     "i can only answer",
     "no runbook",
+    "no policy",
+    "no document",
 )
 
 pass_counter = meter.create_counter(

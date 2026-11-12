@@ -1,51 +1,83 @@
 [
   {
-    "id": "cloudrun-latency",
-    "question": "Our Cloud Run API has high latency. How should I troubleshoot it?",
-    "expected_documents": ["cloud-run-latency"],
-    "required_facts": ["percentile", "cold"]
+    "id": "password-mfa-policy",
+    "question": "What is our password and MFA policy?",
+    "expected_documents": ["password-and-mfa-policy"],
+    "required_facts": ["password", "MFA"]
   },
   {
-    "id": "cloudrun-5xx",
-    "question": "Our Cloud Run service started returning 5xx errors right after we deployed a new revision. What should we check?",
-    "expected_documents": ["cloud-run-5xx"],
-    "required_facts": ["revision"]
+    "id": "data-retention-policy",
+    "question": "What is our data retention policy?",
+    "expected_documents": ["data-retention-policy"],
+    "required_facts": ["retention"]
   },
   {
-    "id": "gke-crashloop",
-    "question": "A GKE pod is in CrashLoopBackOff. What should I inspect first?",
-    "expected_documents": ["gke-crashloop"],
-    "required_facts": ["events", "logs"]
+    "id": "it-incident-response-sop",
+    "question": "What is the SOP for IT incident response?",
+    "expected_documents": ["sop-it-incident-response"],
+    "required_facts": ["incident"]
   },
   {
-    "id": "gke-oomkilled",
-    "question": "A pod keeps getting OOMKilled. How should I investigate its memory usage?",
-    "expected_documents": ["memory-spike"],
-    "required_facts": ["memory", "OOM"]
+    "id": "backup-and-recovery-sop",
+    "question": "What is the SOP for backup and recovery?",
+    "expected_documents": ["sop-backup-and-recovery"],
+    "required_facts": ["backup"]
   },
   {
-    "id": "api-timeout",
-    "question": "Calls to one of our downstream APIs keep timing out. Where should we start?",
-    "expected_documents": ["api-timeout"],
-    "required_facts": ["timeout", "trace"]
+    "id": "release-management-sop",
+    "question": "How is release management handled?",
+    "expected_documents": ["sop-release-management"],
+    "required_facts": ["release"]
   },
   {
-    "id": "llm-latency",
-    "question": "Our LLM invocations are slow. What should we look at?",
-    "expected_documents": ["llm-timeout"],
-    "required_facts": ["token"]
+    "id": "employee-nda",
+    "question": "What does the employee NDA cover?",
+    "expected_documents": ["employee-nda"],
+    "required_facts": ["NDA"]
   },
   {
-    "id": "otel-tracing",
-    "question": "Requests work but our distributed traces stopped appearing after the latest release. How should we troubleshoot?",
-    "expected_documents": ["otel-tracing"],
-    "required_facts": ["span"]
+    "id": "code-of-conduct",
+    "question": "What does our code of conduct require?",
+    "expected_documents": ["code-of-conduct"],
+    "required_facts": ["conduct"]
   },
   {
-    "id": "rag-groundedness",
-    "question": "Our RAG groundedness score dropped. How should we troubleshoot retrieval versus generation?",
-    "expected_documents": ["rag-quality"],
-    "required_facts": ["retrieval", "generation"]
+    "id": "remote-work-policy",
+    "question": "What is our remote work policy?",
+    "expected_documents": ["remote-work-policy"],
+    "required_facts": ["remote"]
+  },
+  {
+    "id": "business-continuity-plan",
+    "question": "What is in our business continuity plan?",
+    "expected_documents": ["business-continuity-plan"],
+    "required_facts": ["continuity"]
+  },
+  {
+    "id": "disaster-recovery-sre",
+    "question": "What does the disaster recovery runbook cover?",
+    "expected_documents": ["disaster-recovery-runbook"],
+    "required_facts": ["disaster"],
+    "role": "sre"
+  },
+  {
+    "id": "vulnerability-management-security",
+    "question": "How does our vulnerability management process work?",
+    "expected_documents": ["vulnerability-management-process"],
+    "required_facts": ["vulnerability"],
+    "role": "security_privacy"
+  },
+  {
+    "id": "access-control-compliance",
+    "question": "What does our access control policy require?",
+    "expected_documents": ["access-control-policy"],
+    "required_facts": ["access"],
+    "role": "compliance"
+  },
+  {
+    "id": "guardrail-role-restricted",
+    "question": "What does our access control policy require?",
+    "expect_refusal": true
   },
   {
     "id": "guardrail-no-evidence",

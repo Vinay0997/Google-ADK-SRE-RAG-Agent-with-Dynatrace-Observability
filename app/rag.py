@@ -13,12 +13,12 @@ from app.telemetry import rag_duration, rag_quality, tracer
 
 logger = logging.getLogger(__name__)
 
-KNOWLEDGE_PATH = Path(__file__).resolve().parent.parent / "knowledge" / "runbooks.json"
+KNOWLEDGE_PATH = Path(__file__).resolve().parent.parent / "knowledge" / "documents.json"
 CURRENT_RETRIEVAL: ContextVar[list[dict[str, Any]]] = ContextVar(
     "current_retrieval", default=[]
 )
 CURRENT_ROLE: ContextVar[str] = ContextVar("current_role", default="viewer")
-VALID_ROLES = {"sre", "clinical_ops", "security_privacy", "viewer"}
+VALID_ROLES = {"sre", "security_privacy", "compliance", "viewer"}
 SEARCH_BUDGET: ContextVar[dict[str, int] | None] = ContextVar(
     "search_budget", default=None
 )
@@ -46,7 +46,7 @@ def _tokens(text: str) -> set[str]:
     }
 
 
-def _load_runbooks() -> list[dict[str, Any]]:
+def _load_documents() -> list[dict[str, Any]]:
     with KNOWLEDGE_PATH.open("r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -77,7 +77,7 @@ def _retrieve_bigquery(query: str, top_k: int, role: str) -> list[dict[str, Any]
     from google.cloud import bigquery
 
     dataset = os.getenv("BQ_DATASET", "agent_observability")
-    chunks = os.getenv("BQ_CHUNKS_TABLE", "runbook_chunks")
+    chunks = os.getenv("BQ_CHUNKS_TABLE", "runbook_chunks")  # table name retained for deploy compatibility; stores policy document chunks
     model = os.getenv("BQ_EMBED_MODEL", "embedding_model")
     for value in (dataset, chunks, model):
         if not _IDENT.match(value):
@@ -129,7 +129,7 @@ def _retrieve_lexical(
     settings = get_settings()
     min_score = getattr(settings, "rag_min_score", 0.3)
     scored = []
-    for doc in _load_runbooks():
+    for doc in _load_documents():
         allowed_roles = doc.get("allowed_roles")
         if not isinstance(allowed_roles, list) or role not in allowed_roles:
             continue
@@ -141,10 +141,10 @@ def _retrieve_lexical(
     return scored[:top_k]
 
 
-# Retrieved runbook text is untrusted evidence. These patterns neutralize
+# Retrieved document text is untrusted evidence. These patterns neutralize
 # instruction-like text aimed at the model so a poisoned document cannot
 # override the agent's rules or permissions. Filtering is defense in depth;
-# the agent instruction still tells the model to treat runbooks as data.
+# the agent instruction still tells the model to treat documents as data.
 _INJECTION_PATTERNS = [
     re.compile(
         r"ignore\s+(?:all\s+)?(?:previous|prior|above)\s+instructions", re.IGNORECASE
@@ -214,7 +214,7 @@ def _apply_context_guardrails(
     return cleaned
 
 
-def retrieve_runbooks(
+def retrieve_documents(
     query: str, top_k: int | None = None, role: str | None = None
 ) -> list[dict[str, Any]]:
     settings = get_settings()
@@ -237,14 +237,15 @@ def retrieve_runbooks(
     return _apply_context_guardrails(matches, settings)
 
 
-def search_runbooks(query: str) -> dict[str, Any]:
-    """Search SRE runbooks for evidence before answering an operational question.
+def search_documents(query: str) -> dict[str, Any]:
+    """Search company policy and SOP documents for evidence before answering.
 
     Args:
-        query: The user's SRE, Cloud Run, Kubernetes, API, latency, or incident question.
+        query: The user's question about policies, procedures, security,
+            compliance, HR, or governance documentation.
 
     Returns:
-        Matching runbook passages and relevance scores.
+        Matching document passages and relevance scores.
     """
     budget = SEARCH_BUDGET.get()
     reason = None
@@ -272,7 +273,7 @@ def search_runbooks(query: str) -> dict[str, Any]:
     budget["calls"] += 1
     started = time.perf_counter()
     with tracer.start_as_current_span("rag.retrieve") as span:
-        matches = retrieve_runbooks(query)
+        matches = retrieve_documents(query)
         evidence = CURRENT_RETRIEVAL.get()
         evidence.clear()
         evidence.extend(matches)

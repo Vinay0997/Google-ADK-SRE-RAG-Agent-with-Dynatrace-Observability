@@ -14,7 +14,7 @@ FastAPI /ask on Cloud Run
         v
 Google ADK Runner + Gemini
         |
-        +--> search_runbooks tool --> local runbook knowledge base
+        +--> search_documents tool --> local document knowledge base
         |
         v
 Agent final answer
