@@ -8,8 +8,8 @@ from evals import run_golden
 
 
 def good_body(
-    answer="Inspect pod events and the previous container logs for errors.",
-    doc_id="gke-crashloop",
+    answer="The password and MFA policy requires multi-factor authentication.",
+    doc_id="password-and-mfa-policy",
     evaluator="gemini-judge",
     groundedness=0.9,
 ):
@@ -31,9 +31,9 @@ def good_body(
 def base_case(**overrides):
     case = {
         "id": "test-case",
-        "question": "How should I troubleshoot a crashing pod?",
-        "expected_documents": ["gke-crashloop"],
-        "required_facts": ["events", "logs"],
+        "question": "What is our password and MFA policy?",
+        "expected_documents": ["password-and-mfa-policy"],
+        "required_facts": ["password", "MFA"],
     }
     case.update(overrides)
     return case
@@ -82,7 +82,7 @@ def test_refusal_case_skips_judge_check(monkeypatch):
     del case["expected_documents"]
     del case["required_facts"]
     body = {
-        "answer": "I can only answer SRE troubleshooting questions based on the runbooks.",
+        "answer": "I can only answer questions based on the documented policies and procedures.",
         "trace_id": "abc",
         "retrieved_documents": [],
         "evaluation": {
@@ -110,7 +110,7 @@ def test_prohibited_term_fails(monkeypatch):
 
 def test_load_cases_validates_golden_file():
     cases = run_golden.load_cases()
-    assert len(cases) >= 11
+    assert len(cases) >= 16
     ids = [case["id"] for case in cases]
     assert len(ids) == len(set(ids))
 

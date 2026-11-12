@@ -12,7 +12,7 @@ const examples = [
 
 function App() {
   const [question, setQuestion] = useState(examples[0]);
-  const [role, setRole] = useState("sre");
+  const [role, setRole] = useState("viewer");
   const [result, setResult] = useState(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -65,7 +65,7 @@ function App() {
       <header>
         <div className="eyebrow">GOOGLE ADK · GKE · DYNATRACE</div>
         <h1>SRE Agent Observatory</h1>
-        <p>Runbook-grounded troubleshooting with request-level evidence.</p>
+        <p>Policy-grounded answers with request-level evidence.</p>
       </header>
 
       <div className="notice">
@@ -92,8 +92,10 @@ function App() {
             <label>Simulated role
               <select value={role} disabled={busy}
                 onChange={e => setRole(e.target.value)}>
-                <option value="sre">SRE</option>
                 <option value="viewer">Viewer</option>
+                <option value="sre">SRE</option>
+                <option value="security_privacy">Security &amp; Privacy</option>
+                <option value="compliance">Compliance</option>
               </select>
             </label>
             <button className="primary" disabled={busy || question.trim().length < 3}>

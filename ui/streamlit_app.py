@@ -15,14 +15,14 @@ AGENT_AUTH_ENABLED = os.getenv(
 
 AGENT_AUDIENCE = os.getenv("AGENT_AUDIENCE", AGENT_URL)
 
-ROLES = ["viewer", "sre", "clinical_ops", "security_privacy"]
+ROLES = ["viewer", "sre", "security_privacy", "compliance"]
 
 SAMPLE_QUESTIONS = {
-    "Claims-engine outage": "What caused the claims-engine outage?",
-    "Patient portal": "The patient portal is slow. What should I check?",
-    "FHIR gateway": "A FHIR gateway pod keeps restarting. What do I check?",
-    "E-prescribing": "E-prescribing is returning errors. What do I do?",
-    "Privacy incident": "A patient name appeared in our logs.",
+    "Passwords and MFA": "What is our password and MFA policy?",
+    "IT incident response": "What is the SOP for IT incident response?",
+    "Data retention": "What is our data retention policy?",
+    "Disaster recovery (SRE only)": "What does the disaster recovery runbook cover?",
+    "Access control (restricted)": "What does our access control policy require?",
     "Out-of-scope question": (
         "What is our company's 2027 Nashville office lease amount?"
     ),
@@ -109,15 +109,15 @@ with st.sidebar:
         )
 
 
-st.title("Google ADK SRE RAG Agent")
+st.title("Google ADK Policy RAG Agent")
 st.caption(
-    "Role-aware runbook retrieval | BigQuery audit | "
+    "Role-aware document retrieval | BigQuery audit | "
     "Response evaluation | Dynatrace observability"
 )
 
 st.info(
-    "Demo: ask about the claims-engine outage as viewer, "
-    "then switch to sre and ask the same question."
+    "Demo: ask about the access control policy as viewer, "
+    "then switch to security_privacy and ask the same question."
 )
 
 with st.form("ask_form"):
@@ -200,7 +200,7 @@ if "last_result" in st.session_state:
         st.subheader("Retrieved evidence")
 
         if documents:
-            st.success(f"{len(documents)} runbook(s) returned.")
+            st.success(f"{len(documents)} document(s) returned.")
             st.dataframe(
                 documents,
                 use_container_width=True,

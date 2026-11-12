@@ -1,0 +1,747 @@
+[
+  {
+    "id": "api-development-standards",
+    "title": "API Development Standards",
+    "tags": [
+      "api",
+      "development",
+      "engineering",
+      "standards"
+    ],
+    "content": "# API Development Standards\n\n**Company:** Aurelius Health Systems  \n**Document Type:** ENGINEERING  \n**Department:** Engineering  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "engineering",
+    "source": "documents/Markdown/API_Development_Standards.md",
+    "allowed_roles": [
+      "sre"
+    ]
+  },
+  {
+    "id": "acceptable-use-policy",
+    "title": "Acceptable Use Policy",
+    "tags": [
+      "acceptable",
+      "policies",
+      "use"
+    ],
+    "content": "# Acceptable Use Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** POLICIES  \n**Department:** Policies  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "policies",
+    "source": "documents/Markdown/Acceptable_Use_Policy.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "access-control-policy",
+    "title": "Access Control Policy",
+    "tags": [
+      "access",
+      "control",
+      "policies"
+    ],
+    "content": "# Access Control Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** POLICIES  \n**Department:** Policies  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "policies",
+    "source": "documents/Markdown/Access_Control_Policy.md",
+    "allowed_roles": [
+      "sre",
+      "security_privacy",
+      "compliance"
+    ]
+  },
+  {
+    "id": "anti-harassment-policy",
+    "title": "Anti Harassment Policy",
+    "tags": [
+      "anti",
+      "harassment"
+    ],
+    "content": "# Anti Harassment Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** HR  \n**Department:** Hr  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "hr",
+    "source": "documents/Markdown/Anti_Harassment_Policy.md",
+    "allowed_roles": [
+      "viewer"
+    ]
+  },
+  {
+    "id": "business-continuity-plan",
+    "title": "Business Continuity Plan",
+    "tags": [
+      "business",
+      "continuity",
+      "operations",
+      "plan"
+    ],
+    "content": "# Business Continuity Plan\n\n**Company:** Aurelius Health Systems  \n**Document Type:** OPERATIONS  \n**Department:** Operations  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "operations",
+    "source": "documents/Markdown/Business_Continuity_Plan.md",
+    "allowed_roles": [
+      "viewer",
+      "sre",
+      "compliance"
+    ]
+  },
+  {
+    "id": "ci-cd-guidelines",
+    "title": "CI CD Guidelines",
+    "tags": [
+      "engineering",
+      "guidelines"
+    ],
+    "content": "# CI CD Guidelines\n\n**Company:** Aurelius Health Systems  \n**Document Type:** ENGINEERING  \n**Department:** Engineering  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "engineering",
+    "source": "documents/Markdown/CI_CD_Guidelines.md",
+    "allowed_roles": [
+      "sre"
+    ]
+  },
+  {
+    "id": "code-of-conduct",
+    "title": "Code of Conduct",
+    "tags": [
+      "code",
+      "conduct"
+    ],
+    "content": "# Code of Conduct\n\n**Company:** Aurelius Health Systems  \n**Document Type:** HR  \n**Department:** Hr  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "hr",
+    "source": "documents/Markdown/Code_of_Conduct.md",
+    "allowed_roles": [
+      "viewer"
+    ]
+  },
+  {
+    "id": "compliance-governance-model",
+    "title": "Compliance Governance Model",
+    "tags": [
+      "compliance",
+      "governance",
+      "model",
+      "risk"
+    ],
+    "content": "# Compliance Governance Model\n\n**Company:** Aurelius Health Systems  \n**Document Type:** RISK_GOVERNANCE  \n**Department:** Risk_governance  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "risk_governance",
+    "source": "documents/Markdown/Compliance_Governance_Model.md",
+    "allowed_roles": [
+      "compliance"
+    ]
+  },
+  {
+    "id": "data-flow-overview",
+    "title": "Data Flow Overview",
+    "tags": [
+      "data",
+      "engineering",
+      "flow"
+    ],
+    "content": "# Data Flow Overview\n\n**Company:** Aurelius Health Systems  \n**Document Type:** ENGINEERING  \n**Department:** Engineering  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "engineering",
+    "source": "documents/Markdown/Data_Flow_Overview.md",
+    "allowed_roles": [
+      "sre",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "data-processing-overview",
+    "title": "Data Processing Overview",
+    "tags": [
+      "data",
+      "internal",
+      "legal",
+      "processing"
+    ],
+    "content": "# Data Processing Overview\n\n**Company:** Aurelius Health Systems  \n**Document Type:** LEGAL_INTERNAL  \n**Department:** Legal_internal  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "legal_internal",
+    "source": "documents/Markdown/Data_Processing_Overview.md",
+    "allowed_roles": [
+      "security_privacy",
+      "compliance"
+    ]
+  },
+  {
+    "id": "data-retention-policy",
+    "title": "Data Retention Policy",
+    "tags": [
+      "data",
+      "policies",
+      "retention"
+    ],
+    "content": "# Data Retention Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** POLICIES  \n**Department:** Policies  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "policies",
+    "source": "documents/Markdown/Data_Retention_Policy.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy",
+      "compliance"
+    ]
+  },
+  {
+    "id": "disaster-recovery-runbook",
+    "title": "Disaster Recovery Runbook",
+    "tags": [
+      "disaster",
+      "operations",
+      "recovery",
+      "runbook"
+    ],
+    "content": "# Disaster Recovery Runbook\n\n**Company:** Aurelius Health Systems  \n**Document Type:** OPERATIONS  \n**Department:** Operations  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "operations",
+    "source": "documents/Markdown/Disaster_Recovery_Runbook.md",
+    "allowed_roles": [
+      "sre",
+      "compliance"
+    ]
+  },
+  {
+    "id": "employee-handbook",
+    "title": "Employee Handbook",
+    "tags": [
+      "employee",
+      "handbook"
+    ],
+    "content": "# Employee Handbook\n\n**Company:** Aurelius Health Systems  \n**Document Type:** HR  \n**Department:** Hr  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "hr",
+    "source": "documents/Markdown/Employee_Handbook.md",
+    "allowed_roles": [
+      "viewer"
+    ]
+  },
+  {
+    "id": "employee-nda",
+    "title": "Employee NDA",
+    "tags": [
+      "employee",
+      "internal",
+      "legal",
+      "nda"
+    ],
+    "content": "# Employee NDA\n\n**Company:** Aurelius Health Systems  \n**Document Type:** LEGAL_INTERNAL  \n**Department:** Legal_internal  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "legal_internal",
+    "source": "documents/Markdown/Employee_NDA.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "enterprise-risk-register",
+    "title": "Enterprise Risk Register",
+    "tags": [
+      "enterprise",
+      "governance",
+      "register",
+      "risk"
+    ],
+    "content": "# Enterprise Risk Register\n\n**Company:** Aurelius Health Systems  \n**Document Type:** RISK_GOVERNANCE  \n**Department:** Risk_governance  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "risk_governance",
+    "source": "documents/Markdown/Enterprise_Risk_Register.md",
+    "allowed_roles": [
+      "compliance",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "escalation-matrix",
+    "title": "Escalation Matrix",
+    "tags": [
+      "escalation",
+      "matrix",
+      "operations"
+    ],
+    "content": "# Escalation Matrix\n\n**Company:** Aurelius Health Systems  \n**Document Type:** OPERATIONS  \n**Department:** Operations  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "operations",
+    "source": "documents/Markdown/Escalation_Matrix.md",
+    "allowed_roles": [
+      "viewer",
+      "sre",
+      "compliance"
+    ]
+  },
+  {
+    "id": "information-security-policy",
+    "title": "Information Security Policy",
+    "tags": [
+      "information",
+      "policies",
+      "security"
+    ],
+    "content": "# Information Security Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** POLICIES  \n**Department:** Policies  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "policies",
+    "source": "documents/Markdown/Information_Security_Policy.md",
+    "allowed_roles": [
+      "sre",
+      "security_privacy",
+      "compliance"
+    ]
+  },
+  {
+    "id": "internal-audit-process",
+    "title": "Internal Audit Process",
+    "tags": [
+      "audit",
+      "governance",
+      "internal",
+      "risk"
+    ],
+    "content": "# Internal Audit Process\n\n**Company:** Aurelius Health Systems  \n**Document Type:** RISK_GOVERNANCE  \n**Department:** Risk_governance  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "risk_governance",
+    "source": "documents/Markdown/Internal_Audit_Process.md",
+    "allowed_roles": [
+      "compliance"
+    ]
+  },
+  {
+    "id": "internal-ip-policy",
+    "title": "Internal IP Policy",
+    "tags": [
+      "internal",
+      "legal"
+    ],
+    "content": "# Internal IP Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** LEGAL_INTERNAL  \n**Department:** Legal_internal  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "legal_internal",
+    "source": "documents/Markdown/Internal_IP_Policy.md",
+    "allowed_roles": [
+      "security_privacy",
+      "compliance"
+    ]
+  },
+  {
+    "id": "leave-and-attendance-policy",
+    "title": "Leave and Attendance Policy",
+    "tags": [
+      "attendance",
+      "leave"
+    ],
+    "content": "# Leave and Attendance Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** HR  \n**Department:** Hr  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "hr",
+    "source": "documents/Markdown/Leave_and_Attendance_Policy.md",
+    "allowed_roles": [
+      "viewer"
+    ]
+  },
+  {
+    "id": "logging-standards",
+    "title": "Logging Standards",
+    "tags": [
+      "engineering",
+      "logging",
+      "standards"
+    ],
+    "content": "# Logging Standards\n\n**Company:** Aurelius Health Systems  \n**Document Type:** ENGINEERING  \n**Department:** Engineering  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "engineering",
+    "source": "documents/Markdown/Logging_Standards.md",
+    "allowed_roles": [
+      "sre",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "logging-and-monitoring-policy",
+    "title": "Logging and Monitoring Policy",
+    "tags": [
+      "logging",
+      "monitoring",
+      "policies"
+    ],
+    "content": "# Logging and Monitoring Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** POLICIES  \n**Department:** Policies  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "policies",
+    "source": "documents/Markdown/Logging_and_Monitoring_Policy.md",
+    "allowed_roles": [
+      "viewer",
+      "sre",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "metrics-and-reporting-framework",
+    "title": "Metrics and Reporting Framework",
+    "tags": [
+      "framework",
+      "governance",
+      "metrics",
+      "reporting",
+      "risk"
+    ],
+    "content": "# Metrics and Reporting Framework\n\n**Company:** Aurelius Health Systems  \n**Document Type:** RISK_GOVERNANCE  \n**Department:** Risk_governance  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "risk_governance",
+    "source": "documents/Markdown/Metrics_and_Reporting_Framework.md",
+    "allowed_roles": [
+      "viewer",
+      "compliance"
+    ]
+  },
+  {
+    "id": "operational-kpis",
+    "title": "Operational KPIs",
+    "tags": [
+      "kpis",
+      "operational",
+      "operations"
+    ],
+    "content": "# Operational KPIs\n\n**Company:** Aurelius Health Systems  \n**Document Type:** OPERATIONS  \n**Department:** Operations  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "operations",
+    "source": "documents/Markdown/Operational_KPIs.md",
+    "allowed_roles": [
+      "viewer",
+      "sre"
+    ]
+  },
+  {
+    "id": "password-and-mfa-policy",
+    "title": "Password and MFA Policy",
+    "tags": [
+      "mfa",
+      "password",
+      "policies"
+    ],
+    "content": "# Password and MFA Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** POLICIES  \n**Department:** Policies  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "policies",
+    "source": "documents/Markdown/Password_and_MFA_Policy.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "performance-review-process",
+    "title": "Performance Review Process",
+    "tags": [
+      "performance",
+      "review"
+    ],
+    "content": "# Performance Review Process\n\n**Company:** Aurelius Health Systems  \n**Document Type:** HR  \n**Department:** Hr  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "hr",
+    "source": "documents/Markdown/Performance_Review_Process.md",
+    "allowed_roles": [
+      "viewer"
+    ]
+  },
+  {
+    "id": "policy-exception-process",
+    "title": "Policy Exception Process",
+    "tags": [
+      "exception",
+      "governance",
+      "risk"
+    ],
+    "content": "# Policy Exception Process\n\n**Company:** Aurelius Health Systems  \n**Document Type:** RISK_GOVERNANCE  \n**Department:** Risk_governance  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "risk_governance",
+    "source": "documents/Markdown/Policy_Exception_Process.md",
+    "allowed_roles": [
+      "compliance",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "raci-matrix",
+    "title": "RACI Matrix",
+    "tags": [
+      "matrix",
+      "operations",
+      "raci"
+    ],
+    "content": "# RACI Matrix\n\n**Company:** Aurelius Health Systems  \n**Document Type:** OPERATIONS  \n**Department:** Operations  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "operations",
+    "source": "documents/Markdown/RACI_Matrix.md",
+    "allowed_roles": [
+      "viewer",
+      "compliance"
+    ]
+  },
+  {
+    "id": "records-management-statement",
+    "title": "Records Management Statement",
+    "tags": [
+      "internal",
+      "legal",
+      "management",
+      "records"
+    ],
+    "content": "# Records Management Statement\n\n**Company:** Aurelius Health Systems  \n**Document Type:** LEGAL_INTERNAL  \n**Department:** Legal_internal  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "legal_internal",
+    "source": "documents/Markdown/Records_Management_Statement.md",
+    "allowed_roles": [
+      "viewer",
+      "compliance",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "remote-work-policy",
+    "title": "Remote Work Policy",
+    "tags": [
+      "policies",
+      "remote",
+      "work"
+    ],
+    "content": "# Remote Work Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** POLICIES  \n**Department:** Policies  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "policies",
+    "source": "documents/Markdown/Remote_Work_Policy.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "risk-assessment-methodology",
+    "title": "Risk Assessment Methodology",
+    "tags": [
+      "assessment",
+      "methodology",
+      "risk",
+      "security"
+    ],
+    "content": "# Risk Assessment Methodology\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SECURITY  \n**Department:** Security  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "security",
+    "source": "documents/Markdown/Risk_Assessment_Methodology.md",
+    "allowed_roles": [
+      "viewer",
+      "compliance"
+    ]
+  },
+  {
+    "id": "sop-backup-and-recovery",
+    "title": "SOP Backup and Recovery",
+    "tags": [
+      "backup",
+      "recovery",
+      "sop"
+    ],
+    "content": "# SOP Backup and Recovery\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_Backup_and_Recovery.md",
+    "allowed_roles": [
+      "viewer",
+      "sre"
+    ]
+  },
+  {
+    "id": "sop-change-management",
+    "title": "SOP Change Management",
+    "tags": [
+      "change",
+      "management",
+      "sop"
+    ],
+    "content": "# SOP Change Management\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_Change_Management.md",
+    "allowed_roles": [
+      "viewer",
+      "sre",
+      "compliance"
+    ]
+  },
+  {
+    "id": "sop-data-access-approval",
+    "title": "SOP Data Access Approval",
+    "tags": [
+      "access",
+      "approval",
+      "data",
+      "sop"
+    ],
+    "content": "# SOP Data Access Approval\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_Data_Access_Approval.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy",
+      "compliance"
+    ]
+  },
+  {
+    "id": "sop-employee-offboarding",
+    "title": "SOP Employee Offboarding",
+    "tags": [
+      "employee",
+      "offboarding",
+      "sop"
+    ],
+    "content": "# SOP Employee Offboarding\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_Employee_Offboarding.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "sop-employee-onboarding",
+    "title": "SOP Employee Onboarding",
+    "tags": [
+      "employee",
+      "onboarding",
+      "sop"
+    ],
+    "content": "# SOP Employee Onboarding\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_Employee_Onboarding.md",
+    "allowed_roles": [
+      "viewer"
+    ]
+  },
+  {
+    "id": "sop-it-incident-response",
+    "title": "SOP IT Incident Response",
+    "tags": [
+      "incident",
+      "response",
+      "sop"
+    ],
+    "content": "# SOP IT Incident Response\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_IT_Incident_Response.md",
+    "allowed_roles": [
+      "viewer",
+      "sre",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "sop-release-management",
+    "title": "SOP Release Management",
+    "tags": [
+      "management",
+      "release",
+      "sop"
+    ],
+    "content": "# SOP Release Management\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_Release_Management.md",
+    "allowed_roles": [
+      "viewer",
+      "sre"
+    ]
+  },
+  {
+    "id": "sop-vendor-onboarding",
+    "title": "SOP Vendor Onboarding",
+    "tags": [
+      "onboarding",
+      "sop",
+      "vendor"
+    ],
+    "content": "# SOP Vendor Onboarding\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SOP  \n**Department:** Sop  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "sop",
+    "source": "documents/Markdown/SOP_Vendor_Onboarding.md",
+    "allowed_roles": [
+      "compliance",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "security-awareness-training",
+    "title": "Security Awareness Training",
+    "tags": [
+      "awareness",
+      "security",
+      "training"
+    ],
+    "content": "# Security Awareness Training\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SECURITY  \n**Department:** Security  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "security",
+    "source": "documents/Markdown/Security_Awareness_Training.md",
+    "allowed_roles": [
+      "viewer",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "system-architecture-overview",
+    "title": "System Architecture Overview",
+    "tags": [
+      "architecture",
+      "engineering",
+      "system"
+    ],
+    "content": "# System Architecture Overview\n\n**Company:** Aurelius Health Systems  \n**Document Type:** ENGINEERING  \n**Department:** Engineering  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "engineering",
+    "source": "documents/Markdown/System_Architecture_Overview.md",
+    "allowed_roles": [
+      "viewer",
+      "sre",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "third-party-risk-management",
+    "title": "Third Party Risk Management",
+    "tags": [
+      "management",
+      "party",
+      "risk",
+      "security",
+      "third"
+    ],
+    "content": "# Third Party Risk Management\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SECURITY  \n**Department:** Security  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "security",
+    "source": "documents/Markdown/Third_Party_Risk_Management.md",
+    "allowed_roles": [
+      "compliance",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "threat-modeling-overview",
+    "title": "Threat Modeling Overview",
+    "tags": [
+      "modeling",
+      "security",
+      "threat"
+    ],
+    "content": "# Threat Modeling Overview\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SECURITY  \n**Department:** Security  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "security",
+    "source": "documents/Markdown/Threat_Modeling_Overview.md",
+    "allowed_roles": [
+      "sre",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "vendor-confidentiality-terms",
+    "title": "Vendor Confidentiality Terms",
+    "tags": [
+      "confidentiality",
+      "internal",
+      "legal",
+      "terms",
+      "vendor"
+    ],
+    "content": "# Vendor Confidentiality Terms\n\n**Company:** Aurelius Health Systems  \n**Document Type:** LEGAL_INTERNAL  \n**Department:** Legal_internal  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "legal_internal",
+    "source": "documents/Markdown/Vendor_Confidentiality_Terms.md",
+    "allowed_roles": [
+      "compliance",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "vulnerability-management-process",
+    "title": "Vulnerability Management Process",
+    "tags": [
+      "management",
+      "security",
+      "vulnerability"
+    ],
+    "content": "# Vulnerability Management Process\n\n**Company:** Aurelius Health Systems  \n**Document Type:** SECURITY  \n**Department:** Security  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "security",
+    "source": "documents/Markdown/Vulnerability_Management_Process.md",
+    "allowed_roles": [
+      "sre",
+      "security_privacy"
+    ]
+  },
+  {
+    "id": "workplace-safety-policy",
+    "title": "Workplace Safety Policy",
+    "tags": [
+      "safety",
+      "workplace"
+    ],
+    "content": "# Workplace Safety Policy\n\n**Company:** Aurelius Health Systems  \n**Document Type:** HR  \n**Department:** Hr  \n**Version:** 1.0  \n**Classification:** Internal  \n\n## Purpose\nThis document defines internal standards, procedures, and expectations for Aurelius Health Systems.\nIt is intended to support consistent operations, regulatory readiness, and secure handling of data.\n\n## Scope\nThis document applies to all employees, contractors, and systems operated or managed by Aurelius Health Systems.\n\n## Roles & Responsibilities\n- Leadership ensures enforcement and governance.\n- Department owners maintain and review this document annually.\n- Employees are responsible for compliance.\n\n## Policy / Procedure Details\nAurelius Health Systems follows industry best practices to ensure operational excellence.\nControls, approvals, and documentation are required where applicable.\nDeviations must be documented and approved by management.\n\n## Enforcement\nViolations may result in disciplinary action up to and including termination.\n\n## Review & Maintenance\nThis document is reviewed at least annually or upon significant organizational or regulatory change.",
+    "category": "hr",
+    "source": "documents/Markdown/Workplace_Safety_Policy.md",
+    "allowed_roles": [
+      "viewer"
+    ]
+  }
+]

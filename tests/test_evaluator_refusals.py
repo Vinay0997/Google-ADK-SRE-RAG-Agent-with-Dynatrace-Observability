@@ -28,7 +28,7 @@ def test_exact_scope_refusal_uses_rule(monkeypatch):
     result = asyncio.run(
         evaluator.evaluate_response(
             "What is our office lease amount?",
-            "I can only answer SRE troubleshooting questions based on the runbooks.",
+            "I can only answer questions based on the documented policies and procedures.",
             [],
         )
     )
@@ -53,8 +53,8 @@ def test_scope_sentence_with_extra_claim_is_not_exact_rule(monkeypatch):
         evaluator.evaluate_response(
             "What is our office lease amount?",
             (
-                "I can only answer SRE troubleshooting questions based on "
-                "the runbooks. The annual lease is 500000 dollars."
+                "I can only answer questions based on the documented "
+                "policies and procedures. The annual lease is 500000 dollars."
             ),
             [],
         )
@@ -70,7 +70,7 @@ def test_no_evidence_refusal_does_not_claim_access_denial(monkeypatch):
     result = asyncio.run(
         evaluator.evaluate_response(
             "How should we troubleshoot RAG groundedness?",
-            "No runbook available to your access level covers this issue.",
+            "No policy available to your access level covers this issue.",
             [],
         )
     )
