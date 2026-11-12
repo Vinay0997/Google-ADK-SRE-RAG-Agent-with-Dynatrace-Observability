@@ -48,6 +48,30 @@
     "required_facts": ["retrieval", "generation"]
   },
   {
+    "id": "aur-cloudsql-saturation",
+    "question": "Our patient portal database has active connections near the limit and latency is rising. How should we troubleshoot?",
+    "expected_documents": ["aur-09"],
+    "required_facts": ["connection", "pool"]
+  },
+  {
+    "id": "aur-tls-renewal",
+    "question": "Clients are seeing certificate errors on the FHIR gateway. What should we check?",
+    "expected_documents": ["aur-10"],
+    "required_facts": ["certificate", "renewal"]
+  },
+  {
+    "id": "aur-otel-collector-backlog",
+    "question": "Our OpenTelemetry collector queue is full and spans are missing in Dynatrace. How should we respond?",
+    "expected_documents": ["aur-11"],
+    "required_facts": ["export", "queue"]
+  },
+  {
+    "id": "aur-gke-node-upgrade",
+    "question": "A GKE node pool upgrade is evicting pods from our clinical services. How should we proceed?",
+    "expected_documents": ["aur-12"],
+    "required_facts": ["PodDisruptionBudget", "upgrade"]
+  },
+  {
     "id": "guardrail-no-evidence",
     "question": "What is our company's 2027 Nashville office lease amount?",
     "expect_refusal": true,

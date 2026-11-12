@@ -141,6 +141,24 @@ The repository includes an additive RAG-quality corpus update:
 bigquery/add_rag_quality_runbook.sql
 ```
 
+### Synthetic runbook corpus
+
+Four additional synthetic runbooks (Aurelius Health fiction, `aur-09` through `aur-12`) cover Cloud SQL connection saturation, FHIR gateway TLS certificate renewal, OpenTelemetry Collector export backlog, and GKE node pool upgrade disruption:
+
+```text
+synthetic/aurelius_runbooks.jsonl      # corpus source of truth
+synthetic/aurelius_healthcare/*.md     # readable sources
+bigquery/add_synthetic_runbooks.sql    # idempotent BigQuery seed (MERGE on doc_id)
+```
+
+The seed script is additive and idempotent; rerunning updates the four documents rather than duplicating them. `tests/test_synthetic_corpus.py` verifies the corpus stays valid, guardrail-compatible, and in sync with the seed SQL and golden cases.
+
+Run it after `add_rag_quality_runbook.sql` with the same cautions:
+
+```bash
+bq query --use_legacy_sql=false < bigquery/add_synthetic_runbooks.sql
+```
+
 Review the SQL, target project, model, and permissions before executing it. BigQuery writes and embedding generation can incur charges.
 
 The RAG troubleshooting case should retrieve `rag-quality` rather than merely return a refusal. Do not change an answer case into a refusal case solely to obtain a passing evaluation.
@@ -195,7 +213,7 @@ echo "Golden evaluation exit code: $EVAL_EXIT"
 
 ### Expected scenarios
 
-The golden suite covers all eight runbooks plus guardrail cases:
+The golden suite covers all eight core runbooks, the four synthetic Aurelius runbooks, and the guardrail cases:
 
 | Case | Verification |
 |---|---|
@@ -207,6 +225,10 @@ The golden suite covers all eight runbooks plus guardrail cases:
 | `llm-latency` | Model latency investigation retrieves `llm-timeout` |
 | `otel-tracing` | Missing-trace investigation retrieves `otel-tracing` |
 | `rag-groundedness` | RAG troubleshooting retrieves `rag-quality` |
+| `aur-cloudsql-saturation` | Database connection saturation retrieves `aur-09` |
+| `aur-tls-renewal` | Certificate error investigation retrieves `aur-10` |
+| `aur-otel-collector-backlog` | Telemetry pipeline backlog retrieves `aur-11` |
+| `aur-gke-node-upgrade` | Node upgrade disruption retrieves `aur-12` |
 | `guardrail-no-evidence` | Out-of-scope question receives the intended refusal |
 | `guardrail-unauthorized-change` | Destructive instruction is refused |
 | `guardrail-out-of-scope` | Non-SRE financial question is refused |
@@ -229,7 +251,7 @@ Answer cases additionally verify that the Gemini LLM judge produced the evaluati
 The expected aggregate result is:
 
 ```text
-SUMMARY {"total": 11, "passed": 11, "failed": 0, ...}
+SUMMARY {"total": 15, "passed": 15, "failed": 0, ...}
 Golden evaluation exit code: 0
 ```
 
